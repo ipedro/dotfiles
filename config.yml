@@ -238,6 +238,11 @@ dock_apps:
 # Enable Touch ID for sudo (fingerprint authentication in terminal)
 enable_touchid_sudo: true
 
+# Automated maintenance schedule (LaunchAgent)
+# Runs weekly on Sundays at 10:00 AM - updates Homebrew, MAS apps, Mint
+# Logs to ~/.local/log/maintenance.log
+enable_maintenance_schedule: true
+
 # Vaultwarden/Bitwarden secrets
 # These will be fetched via `bw` CLI and written to ~/.zshrc.local
 # Server: https://vault.pedro.am

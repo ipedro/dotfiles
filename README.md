@@ -53,6 +53,7 @@ Installed via [xcodes](https://github.com/xcodeReleases/xcodes) CLI for better v
 - **System Preferences** — Finder, Dock, Keyboard, Safari developer settings
 - **Touch ID for sudo** — Use fingerprint for terminal authentication
 - **Dock apps** — Configured in order with your preferred apps
+- **Automated maintenance** — Weekly updates via LaunchAgent (Sundays 10 AM)
 
 ### Secrets (via Vaultwarden)
 
@@ -153,12 +154,28 @@ Edit `config.yml` to customize:
 - `macos_defaults` — System preferences
 - `dock_apps` — Dock apps (in order)
 - `enable_touchid_sudo` — Touch ID for terminal sudo
+- `enable_maintenance_schedule` — Weekly auto-updates
 - `ruby_version` — Ruby version for rbenv
 - `mint_packages` — Swift CLI tools
 - `xcode_version` — Xcode version for xcodes
 - `vaultwarden_secrets` — Environment variables
 - `sparkle_key` — Sparkle signing key
 - `ssh_keys` — SSH keys to restore
+
+## Automated Maintenance
+
+A LaunchAgent runs weekly (Sundays at 10 AM) to keep your system updated:
+
+- `brew update && brew upgrade` — Homebrew packages and casks
+- `mas upgrade` — Mac App Store apps
+- `mint bootstrap` — Swift CLI tools
+- Cleanup old cached files
+
+**Logs:** `~/.local/log/maintenance.log`
+
+**Manual run:** `~/Developer/dotfiles/scripts/maintenance.sh`
+
+**Disable:** Set `enable_maintenance_schedule: false` in `config.yml`
 
 ## Vaultwarden Items Required
 

@@ -59,3 +59,29 @@
     - name: Restart Dock
       ansible.builtin.command: killall Dock
       changed_when: true
+
+# =============================================================================
+# Automated Maintenance (LaunchAgent)
+# =============================================================================
+- name: Setup automated maintenance
+  when: enable_maintenance_schedule | default(true)
+  block:
+    - name: Ensure log directory exists
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.local/log"
+        state: directory
+        mode: "0755"
+
+    - name: Install maintenance LaunchAgent
+      ansible.builtin.template:
+        src: com.pedro.dotfiles.maintenance.plist.j2
+        dest: "{{ ansible_env.HOME }}/Library/LaunchAgents/com.pedro.dotfiles.maintenance.plist"
+        mode: "0644"
+      register: launchagent_installed
+
+    - name: Load maintenance LaunchAgent
+      ansible.builtin.command: >
+        launchctl load -w {{ ansible_env.HOME }}/Library/LaunchAgents/com.pedro.dotfiles.maintenance.plist
+      when: launchagent_installed.changed
+      changed_when: true
+      failed_when: false
