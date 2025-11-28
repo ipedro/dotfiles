@@ -6,7 +6,21 @@ Automated setup for a new Mac using Ansible. Installs packages, configures dotfi
 
 ## 🚀 New Mac Setup
 
-On a fresh Mac, run:
+On a fresh Mac, open Terminal and run:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ipedro/dotfiles/main/bootstrap.sh | bash
+```
+
+That's it! The script will:
+
+1. Install Xcode Command Line Tools
+2. Install Homebrew
+3. Clone this repo to `~/Developer/dotfiles`
+4. Launch the interactive setup wizard
+
+<details>
+<summary>Manual setup (if you prefer)</summary>
 
 ```bash
 # Install Xcode Command Line Tools first
@@ -16,13 +30,13 @@ xcode-select --install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Install git (if needed) and clone
-brew install git
+# Clone and run
 git clone https://github.com/ipedro/dotfiles.git ~/Developer/dotfiles
-
-# Run the interactive setup
 cd ~/Developer/dotfiles
 ./setup.sh
+```
+
+</details>
 ```
 
 The setup script will interactively guide you through:
