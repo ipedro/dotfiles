@@ -13,7 +13,6 @@ homebrew_packages:
   - iperf3
   - mint
   - node
-  - openai-whisper
   - pipx
   - python@3.14
   - rbenv
