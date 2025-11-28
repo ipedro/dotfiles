@@ -63,6 +63,18 @@
   when: xcode_config.stat.exists
   changed_when: true
 
+- name: Ensure Xcode FontAndColorThemes directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/Library/Developer/Xcode/UserData/FontAndColorThemes"
+    state: directory
+    mode: "0755"
+
+- name: Restore Xcode color themes (with JetBrains Mono 15pt)
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/files/xcode-themes/"
+    dest: "{{ ansible_env.HOME }}/Library/Developer/Xcode/UserData/FontAndColorThemes/"
+    mode: "0644"
+
 # =============================================================================
 # Safari
 # =============================================================================
