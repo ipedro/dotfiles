@@ -4,7 +4,7 @@
 # =============================================================================
 - name: Ensure Screenshots directory exists
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/Pictures/Screenshots"
+    path: "{{ ansible_facts.env.HOME }}/Pictures/Screenshots"
     state: directory
     mode: "0755"
 
@@ -77,20 +77,20 @@
   block:
     - name: Ensure log directory exists
       ansible.builtin.file:
-        path: "{{ ansible_env.HOME }}/.local/log"
+        path: "{{ ansible_facts.env.HOME }}/.local/log"
         state: directory
         mode: "0755"
 
     - name: Install maintenance LaunchAgent
       ansible.builtin.template:
         src: com.pedro.dotfiles.maintenance.plist.j2
-        dest: "{{ ansible_env.HOME }}/Library/LaunchAgents/com.pedro.dotfiles.maintenance.plist"
+        dest: "{{ ansible_facts.env.HOME }}/Library/LaunchAgents/com.pedro.dotfiles.maintenance.plist"
         mode: "0644"
       register: launchagent_installed
 
     - name: Load maintenance LaunchAgent
       ansible.builtin.command: >
-        launchctl load -w {{ ansible_env.HOME }}/Library/LaunchAgents/com.pedro.dotfiles.maintenance.plist
+        launchctl load -w {{ ansible_facts.env.HOME }}/Library/LaunchAgents/com.pedro.dotfiles.maintenance.plist
       when: launchagent_installed.changed
       changed_when: true
       failed_when: false
@@ -103,7 +103,7 @@
   block:
     - name: Expand exclusion paths
       ansible.builtin.set_fact:
-        expanded_exclusions: "{{ timemachine_exclusions | map('regex_replace', '^~', ansible_env.HOME) | list }}"
+        expanded_exclusions: "{{ timemachine_exclusions | map('regex_replace', '^~', ansible_facts.env.HOME) | list }}"
 
     - name: Add Time Machine exclusions
       ansible.builtin.command: tmutil addexclusion "{{ item }}"

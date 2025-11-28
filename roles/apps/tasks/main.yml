@@ -65,14 +65,14 @@
 
 - name: Ensure Xcode FontAndColorThemes directory exists
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/Library/Developer/Xcode/UserData/FontAndColorThemes"
+    path: "{{ ansible_facts.env.HOME }}/Library/Developer/Xcode/UserData/FontAndColorThemes"
     state: directory
     mode: "0755"
 
 - name: Restore Xcode color themes (with JetBrains Mono 15pt)
   ansible.builtin.copy:
     src: "{{ playbook_dir }}/files/xcode-themes/"
-    dest: "{{ ansible_env.HOME }}/Library/Developer/Xcode/UserData/FontAndColorThemes/"
+    dest: "{{ ansible_facts.env.HOME }}/Library/Developer/Xcode/UserData/FontAndColorThemes/"
     mode: "0644"
 
 # =============================================================================

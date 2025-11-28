@@ -8,7 +8,7 @@
     <key>ProgramArguments</key>
     <array>
         <string>/bin/zsh</string>
-        <string>{{ ansible_env.HOME }}/Developer/dotfiles/scripts/maintenance.sh</string>
+        <string>{{ ansible_facts.env.HOME }}/Developer/dotfiles/scripts/maintenance.sh</string>
     </array>
     
     <!-- Run weekly on Sundays at 10:00 AM -->
@@ -35,8 +35,8 @@
     
     <!-- Logging -->
     <key>StandardOutPath</key>
-    <string>{{ ansible_env.HOME }}/.local/log/maintenance-stdout.log</string>
+    <string>{{ ansible_facts.env.HOME }}/.local/log/maintenance-stdout.log</string>
     <key>StandardErrorPath</key>
-    <string>{{ ansible_env.HOME }}/.local/log/maintenance-stderr.log</string>
+    <string>{{ ansible_facts.env.HOME }}/.local/log/maintenance-stderr.log</string>
 </dict>
 </plist>

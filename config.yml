@@ -1,7 +1,7 @@
 ---
-# Homebrew taps
-homebrew_taps:
-  - homebrew/cask-fonts
+# Homebrew taps (add custom taps here if needed)
+homebrew_taps: []
+# Note: homebrew/cask-fonts was deprecated - fonts are now in main cask
 
 # Homebrew packages (formulae)
 homebrew_packages:

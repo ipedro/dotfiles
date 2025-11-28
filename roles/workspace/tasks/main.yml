@@ -6,7 +6,7 @@
 # =============================================================================
 - name: Create ~/Developer directory
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/Developer"
+    path: "{{ ansible_facts.env.HOME }}/Developer"
     state: directory
     mode: "0755"
 
@@ -16,7 +16,7 @@
 - name: Clone personal repositories
   ansible.builtin.git:
     repo: "{{ item.repo }}"
-    dest: "{{ ansible_env.HOME }}/Developer/{{ item.name }}"
+    dest: "{{ ansible_facts.env.HOME }}/Developer/{{ item.name }}"
     clone: true
     update: false  # Don't overwrite local changes
     accept_hostkey: true

@@ -50,7 +50,7 @@
 - name: Create Mintfile from config
   ansible.builtin.template:
     src: Mintfile.j2
-    dest: "{{ ansible_env.HOME }}/.config/mint/Mintfile"
+    dest: "{{ ansible_facts.env.HOME }}/.config/mint/Mintfile"
     mode: "0644"
   when: mint_packages is defined and mint_packages | length > 0
 
