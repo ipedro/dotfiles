@@ -85,3 +85,20 @@
       when: launchagent_installed.changed
       changed_when: true
       failed_when: false
+
+# =============================================================================
+# Time Machine Exclusions
+# =============================================================================
+- name: Configure Time Machine exclusions
+  when: timemachine_exclusions is defined and timemachine_exclusions | length > 0
+  block:
+    - name: Expand exclusion paths
+      ansible.builtin.set_fact:
+        expanded_exclusions: "{{ timemachine_exclusions | map('regex_replace', '^~', ansible_env.HOME) | list }}"
+
+    - name: Add Time Machine exclusions
+      ansible.builtin.command: tmutil addexclusion "{{ item }}"
+      loop: "{{ expanded_exclusions }}"
+      register: tmutil_result
+      changed_when: tmutil_result.rc == 0
+      failed_when: false  # Don't fail if path doesn't exist yet

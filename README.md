@@ -156,6 +156,7 @@ Edit `config.yml` to customize:
 - `dock_apps` — Dock apps (in order)
 - `enable_touchid_sudo` — Touch ID for terminal sudo
 - `enable_maintenance_schedule` — Weekly auto-updates
+- `timemachine_exclusions` — Paths to exclude from backups
 - `developer_repos` — Git repos to clone into ~/Developer
 - `ruby_version` — Ruby version for rbenv
 - `mint_packages` — Swift CLI tools
