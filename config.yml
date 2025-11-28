@@ -155,6 +155,23 @@ macos_defaults:
     value: true
 
   # =============================================================================
+  # Region & Language
+  # =============================================================================
+  # Languages in order of preference: English (US), Portuguese (BR), German
+  - domain: NSGlobalDomain
+    key: AppleLanguages
+    type: array
+    value:
+      - en-US
+      - pt-BR
+      - de-DE
+  # Locale: English with Germany as region (for date/number formats)
+  - domain: NSGlobalDomain
+    key: AppleLocale
+    type: string
+    value: "en_US@rg=dezzzz"
+
+  # =============================================================================
   # Menu Bar
   # =============================================================================
   # Show day of week in menu bar clock
