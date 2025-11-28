@@ -4,20 +4,35 @@
 
 Automated setup for a new Mac using Ansible. Installs packages, configures dotfiles, and restores secrets from Vaultwarden.
 
-## Quick Start (New Mac)
+## 🚀 New Mac Setup
 
-```zsh
-# One-liner bootstrap
-curl -fsSL https://raw.githubusercontent.com/ipedro/dotfiles/main/install.sh | zsh
-```
+On a fresh Mac, run:
 
-Or clone and run manually:
+```bash
+# Install Xcode Command Line Tools first
+xcode-select --install
 
-```zsh
+# Install Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Install git (if needed) and clone
+brew install git
 git clone https://github.com/ipedro/dotfiles.git ~/Developer/dotfiles
+
+# Run the interactive setup
 cd ~/Developer/dotfiles
-./install.sh
+./setup.sh
 ```
+
+The setup script will interactively guide you through:
+
+1. ✅ Installing Xcode Command Line Tools
+2. ✅ Installing Homebrew & Ansible
+3. ✅ Signing into Mac App Store
+4. ✅ Setting up SSH keys (generate or restore from Vaultwarden)
+5. ✅ Configuring Vaultwarden for secrets
+6. ✅ Running the full Ansible playbook
 
 ## What's Included
 
