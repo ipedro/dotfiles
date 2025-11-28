@@ -1,0 +1,44 @@
+---
+- name: Ensure dotfiles directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/Developer/dotfiles"
+    state: directory
+    mode: "0755"
+
+- name: Symlink shell configuration files
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/files/{{ item }}"
+    dest: "{{ ansible_env.HOME }}/{{ item }}"
+    state: link
+    force: true
+  loop:
+    - .zshrc
+    - .zprofile
+
+- name: Symlink git configuration files
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/files/{{ item }}"
+    dest: "{{ ansible_env.HOME }}/{{ item }}"
+    state: link
+    force: true
+  loop:
+    - .gitconfig
+    - .gitignore_global
+
+- name: Ensure .ssh directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.ssh"
+    state: directory
+    mode: "0700"
+
+- name: Check if .zshrc.local exists
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.zshrc.local"
+  register: zshrc_local
+
+- name: Create .zshrc.local from example if not exists
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/files/.zshrc.local.example"
+    dest: "{{ ansible_env.HOME }}/.zshrc.local"
+    mode: "0600"
+  when: not zshrc_local.stat.exists

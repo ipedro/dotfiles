@@ -1,0 +1,37 @@
+---
+- name: Tap Homebrew repositories
+  community.general.homebrew_tap:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ homebrew_taps }}"
+
+- name: Install Homebrew packages
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ homebrew_packages }}"
+
+- name: Install Homebrew casks
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ homebrew_casks }}"
+
+- name: Install mas (Mac App Store CLI)
+  community.general.homebrew:
+    name: mas
+    state: present
+  when: mas_apps is defined and mas_apps | length > 0
+
+- name: Install Mac App Store apps
+  ansible.builtin.shell: mas install {{ item.id }}
+  loop: "{{ mas_apps | default([]) }}"
+  register: mas_result
+  changed_when: "'already installed' not in mas_result.stderr"
+  failed_when: false
+
+- name: Remove unwanted bundled apps
+  ansible.builtin.shell: mas uninstall {{ item.id }} || true
+  loop: "{{ mas_apps_to_remove | default([]) }}"
+  changed_when: false
+  failed_when: false

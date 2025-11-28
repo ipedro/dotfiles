@@ -1,0 +1,13 @@
+---
+profile: production
+
+skip_list:
+  - yaml[line-length]  # Handled by yamllint
+  - command-instead-of-shell  # We need shell for pipes and complex commands
+  - no-changed-when  # Some commands legitimately don't need this
+
+warn_list:
+  - experimental
+
+exclude_paths:
+  - .github/

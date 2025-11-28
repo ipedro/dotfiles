@@ -1,11 +1,13 @@
 # macOS Dotfiles & Ansible Playbook
 
-Automated setup for a new Mac using Ansible.
+[![CI](https://github.com/ipedro/dotfiles/actions/workflows/ci.yml/badge.svg)](https://github.com/ipedro/dotfiles/actions/workflows/ci.yml)
+
+Automated setup for a new Mac using Ansible. Installs packages, configures dotfiles, and restores secrets from Vaultwarden.
 
 ## Quick Start (New Mac)
 
 ```zsh
-# One-liner (after Xcode CLI tools)
+# One-liner bootstrap
 curl -fsSL https://raw.githubusercontent.com/ipedro/dotfiles/main/install.sh | zsh
 ```
 
@@ -20,47 +22,65 @@ cd ~/Developer/dotfiles
 ## What's Included
 
 ### Homebrew Packages
+
 - **Languages:** Go, Node.js, Python 3.14, Ruby (via rbenv)
 - **Swift Tools:** swiftlint, swiftformat, swift-format, mint, xclogparser
-- **Utils:** ripgrep, cloc, hugo, iperf3
+- **CLIs:** gh, ripgrep, cloc, hugo, iperf3
 
 ### Homebrew Casks
-- xcodes-app, ollama-app, android-platform-tools, font-fira-code
+
+VS Code, Fork, Blender, FreeCAD, OpenSCAD, ChatGPT, Google Chrome, Sketch, and more.
+
+### Mac App Store Apps
+
+Xcode, 1Blocker, Bitwarden, Pixelmator Pro, RocketSim, Telegram, WhatsApp, and more.
 
 ### Dotfiles
+
 - `.zshrc` / `.zprofile` — Shell configuration
 - `.gitconfig` / `.gitignore_global` — Git configuration
 - VS Code settings and extensions
 
-### macOS Preferences (Optional)
-Set `configure_macos_defaults: true` in `config.yml` to enable:
-- Show hidden files & extensions
-- Fast key repeat
-- Dock auto-hide
+### Secrets (via Vaultwarden)
 
-## File Structure
+- Environment variables (API keys)
+- Sparkle EdDSA signing key
+- SSH private keys
+
+## Project Structure
 
 ```
 dotfiles/
-├── install.sh          # Bootstrap script
-├── main.yml            # Ansible playbook
-├── config.yml          # Configuration (packages, extensions, etc.)
-├── requirements.yml    # Ansible Galaxy dependencies
-├── inventory           # Ansible inventory
-├── ansible.cfg         # Ansible configuration
-├── Brewfile            # Homebrew bundle (reference)
-└── files/
-    ├── .zshrc
-    ├── .zprofile
-    ├── .zshrc.local.example
-    ├── .gitconfig
-    ├── .gitignore_global
-    ├── vscode-extensions.txt
-    └── vscode/
-        └── settings.json
+├── main.yml                 # Main playbook (imports roles)
+├── config.yml               # All configuration variables
+├── install.sh               # Bootstrap script
+├── requirements.yml         # Ansible Galaxy dependencies
+├── inventory                # Ansible inventory
+├── ansible.cfg              # Ansible configuration
+├── Brewfile                 # Homebrew bundle (reference)
+├── files/                   # Dotfiles to symlink
+│   ├── .zshrc
+│   ├── .zprofile
+│   ├── .gitconfig
+│   ├── .gitignore_global
+│   └── vscode/settings.json
+└── roles/                   # Ansible roles
+    ├── homebrew/            # Packages, casks, MAS apps
+    ├── dotfiles/            # Shell & git configs
+    ├── vscode/              # VS Code settings & extensions
+    ├── macos/               # macOS system preferences
+    └── secrets/             # Vaultwarden integration
 ```
 
-## Running Specific Tasks
+## Usage
+
+### Run Full Playbook
+
+```zsh
+ansible-playbook main.yml --ask-become-pass
+```
+
+### Run Specific Roles
 
 ```zsh
 # Only Homebrew packages
@@ -71,20 +91,77 @@ ansible-playbook main.yml --tags dotfiles
 
 # Only VS Code
 ansible-playbook main.yml --tags vscode
+
+# Only secrets (requires bw unlock)
+ansible-playbook main.yml --tags secrets
 ```
 
-## Secrets Management
+### Restore Secrets from Vaultwarden
 
-Secrets are NOT stored in this repo. After setup:
+```zsh
+# Configure and login
+bw config server "https://vault.pedro.am"
+bw login
+export BW_SESSION=$(bw unlock --raw)
 
-1. Edit `~/.zshrc.local` with your API keys
-2. Consider using [Vaultwarden](https://github.com/dani-garcia/vaultwarden) for centralized secrets
+# Run secrets restoration
+ansible-playbook main.yml --tags secrets
+```
 
-## Manual Steps
+This will:
 
-After running the playbook:
+- Write API keys to `~/.zshrc.local`
+- Add Sparkle signing key to Keychain
+- Restore SSH private keys to `~/.ssh/`
 
-1. **SSH Keys** — Import from secure backup or generate new ones
-2. **Mac App Store** — Sign in and install apps manually
-3. **Sparkle Key** — Import EdDSA signing key from backup
-4. **Code Signing** — Regenerate via Xcode / Apple Developer portal
+## Configuration
+
+Edit `config.yml` to customize:
+
+- `homebrew_packages` — CLI tools
+- `homebrew_casks` — GUI apps
+- `mas_apps` — Mac App Store apps
+- `vscode_extensions` — VS Code extensions
+- `macos_defaults` — System preferences
+- `vaultwarden_secrets` — Environment variables
+- `sparkle_key` — Sparkle signing key
+- `ssh_keys` — SSH keys to restore
+
+## Vaultwarden Items Required
+
+| Item Name | Type | Contents |
+|-----------|------|----------|
+| `OpenAI API Key` | Login | Password = API key |
+| `GitHub Token` | Login | Password = PAT |
+| `Sparkle EdDSA Key` | Login | Password = private key |
+| `SSH Private Key (ed25519)` | Secure Note | Full key content |
+| `SSH Private Key (RSA)` | Secure Note | Full key content |
+
+## Development
+
+### Linting
+
+```zsh
+# Install linters
+pip install ansible-lint yamllint
+
+# Run linters
+yamllint .
+ansible-lint
+```
+
+### Syntax Check
+
+```zsh
+ansible-playbook main.yml --syntax-check
+```
+
+### Dry Run
+
+```zsh
+ansible-playbook main.yml --check
+```
+
+## License
+
+MIT

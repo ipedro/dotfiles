@@ -1,0 +1,9 @@
+---
+- name: Configure macOS defaults
+  community.general.osx_defaults:
+    domain: "{{ item.domain }}"
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+  loop: "{{ macos_defaults }}"
+  when: configure_macos_defaults | default(false)
