@@ -6,6 +6,7 @@ homebrew_taps:
 # Homebrew packages (formulae)
 homebrew_packages:
   - cloc
+  - direnv
   - gh
   - go
   - hugo
@@ -21,6 +22,9 @@ homebrew_packages:
   - swiftformat
   - swiftlint
   - xclogparser
+  - zsh-autosuggestions
+  - zsh-completions
+  - zsh-syntax-highlighting
 
 # Homebrew casks (GUI apps - only those NOT available on MAS)
 homebrew_casks:
@@ -200,6 +204,60 @@ macos_defaults:
     key: HIDScrollZoomModifierMask
     type: int
     value: 262144
+
+  # =============================================================================
+  # Keyboard - Faster key repeat
+  # =============================================================================
+  # Key repeat rate (lower = faster, default 6)
+  - domain: NSGlobalDomain
+    key: KeyRepeat
+    type: int
+    value: 2
+  # Delay until repeat (lower = shorter, default 25)
+  - domain: NSGlobalDomain
+    key: InitialKeyRepeat
+    type: int
+    value: 15
+
+  # =============================================================================
+  # Screenshots
+  # =============================================================================
+  # Save screenshots to ~/Pictures/Screenshots
+  - domain: com.apple.screencapture
+    key: location
+    type: string
+    value: ~/Pictures/Screenshots
+  # Disable shadow in screenshots
+  - domain: com.apple.screencapture
+    key: disable-shadow
+    type: bool
+    value: true
+
+  # =============================================================================
+  # Siri
+  # =============================================================================
+  # Disable Siri
+  - domain: com.apple.assistant.support
+    key: "Assistant Enabled"
+    type: bool
+    value: false
+  # Hide Siri from menu bar
+  - domain: com.apple.Siri
+    key: StatusMenuVisible
+    type: bool
+    value: false
+
+  # =============================================================================
+  # .DS_Store - Disable on network and USB volumes
+  # =============================================================================
+  - domain: com.apple.desktopservices
+    key: DSDontWriteNetworkStores
+    type: bool
+    value: true
+  - domain: com.apple.desktopservices
+    key: DSDontWriteUSBStores
+    type: bool
+    value: true
 
 # =============================================================================
 # Dock Apps (in order, left to right)

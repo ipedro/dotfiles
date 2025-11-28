@@ -1,26 +1,61 @@
-.bin
+# =============================================================================
+# macOS
+# =============================================================================
 .DS_Store
 **/.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# =============================================================================
+# Windows
+# =============================================================================
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# =============================================================================
+# IDEs & Editors
+# =============================================================================
+# JetBrains
+.idea/
+*.iml
+
+# VS Code (keep settings but ignore history)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Vim
+*.swp
+*.swo
+*~
+
+# =============================================================================
+# Build artifacts
+# =============================================================================
+.bin
 vendor/
 
+# =============================================================================
 # Xcode
-#
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
-
-## User settings
+# =============================================================================
 xcuserdata/
-
-## Obj-C/Swift specific
 *.hmap
-
-## App packaging
 *.ipa
 *.dSYM.zip
 *.dSYM
-
-## Playgrounds
 timeline.xctimeline
 playground.xcworkspace
 
 # Swift Package Manager
 .build/
+
+# =============================================================================
+# Environment files (never commit secrets)
+# =============================================================================
+.env
+.env.local
+.envrc
