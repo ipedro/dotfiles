@@ -62,3 +62,48 @@
     defaults import com.apple.dt.Xcode "{{ playbook_dir }}/files/app-configs/Xcode.plist"
   when: xcode_config.stat.exists
   changed_when: true
+
+# =============================================================================
+# Safari
+# =============================================================================
+- name: Check if Safari config exists
+  ansible.builtin.stat:
+    path: "{{ playbook_dir }}/files/app-configs/Safari.plist"
+  register: safari_config
+
+- name: Restore Safari settings
+  ansible.builtin.shell: |
+    killall Safari 2>/dev/null || true
+    defaults import com.apple.Safari "{{ playbook_dir }}/files/app-configs/Safari.plist"
+  when: safari_config.stat.exists
+  changed_when: true
+
+# =============================================================================
+# Google Chrome
+# =============================================================================
+- name: Check if Chrome config exists
+  ansible.builtin.stat:
+    path: "{{ playbook_dir }}/files/app-configs/Chrome.plist"
+  register: chrome_config
+
+- name: Restore Chrome settings
+  ansible.builtin.shell: |
+    killall "Google Chrome" 2>/dev/null || true
+    defaults import com.google.Chrome "{{ playbook_dir }}/files/app-configs/Chrome.plist"
+  when: chrome_config.stat.exists
+  changed_when: true
+
+# =============================================================================
+# Sketch
+# =============================================================================
+- name: Check if Sketch config exists
+  ansible.builtin.stat:
+    path: "{{ playbook_dir }}/files/app-configs/Sketch.plist"
+  register: sketch_config
+
+- name: Restore Sketch settings
+  ansible.builtin.shell: |
+    killall Sketch 2>/dev/null || true
+    defaults import com.bohemiancoding.sketch3 "{{ playbook_dir }}/files/app-configs/Sketch.plist"
+  when: sketch_config.stat.exists
+  changed_when: true
