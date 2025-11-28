@@ -33,13 +33,23 @@ VS Code, Fork, Blender, FreeCAD, OpenSCAD, ChatGPT, Google Chrome, Sketch, and m
 
 ### Mac App Store Apps
 
-Xcode, 1Blocker, Bitwarden, Pixelmator Pro, RocketSim, Telegram, WhatsApp, and more.
+1Blocker, Bitwarden, Pixelmator Pro, RocketSim, Telegram, WhatsApp, TestFlight, and more.
+
+### Xcode
+
+Installed via [xcodes](https://github.com/xcodeReleases/xcodes) CLI for better version control. Requires Apple ID credentials in Vaultwarden for automation.
 
 ### Dotfiles
 
 - `.zshrc` / `.zprofile` — Shell configuration
 - `.gitconfig` / `.gitignore_global` — Git configuration
 - VS Code settings and extensions
+
+### macOS Configuration
+
+- **System Preferences** — Finder, Dock, Keyboard, Safari developer settings
+- **Touch ID for sudo** — Use fingerprint for terminal authentication
+- **Dock apps** — Configured in order with your preferred apps
 
 ### Secrets (via Vaultwarden)
 
@@ -49,7 +59,7 @@ Xcode, 1Blocker, Bitwarden, Pixelmator Pro, RocketSim, Telegram, WhatsApp, and m
 
 ## Project Structure
 
-```
+```text
 dotfiles/
 ├── main.yml                 # Main playbook (imports roles)
 ├── config.yml               # All configuration variables
@@ -57,7 +67,6 @@ dotfiles/
 ├── requirements.yml         # Ansible Galaxy dependencies
 ├── inventory                # Ansible inventory
 ├── ansible.cfg              # Ansible configuration
-├── Brewfile                 # Homebrew bundle (reference)
 ├── files/                   # Dotfiles to symlink
 │   ├── .zshrc
 │   ├── .zprofile
@@ -68,7 +77,8 @@ dotfiles/
     ├── homebrew/            # Packages, casks, MAS apps
     ├── dotfiles/            # Shell & git configs
     ├── vscode/              # VS Code settings & extensions
-    ├── macos/               # macOS system preferences
+    ├── macos/               # System prefs, Dock, Touch ID
+    ├── devtools/            # rbenv, Mint, Xcode setup
     └── secrets/             # Vaultwarden integration
 ```
 
@@ -123,6 +133,11 @@ Edit `config.yml` to customize:
 - `mas_apps` — Mac App Store apps
 - `vscode_extensions` — VS Code extensions
 - `macos_defaults` — System preferences
+- `dock_apps` — Dock apps (in order)
+- `enable_touchid_sudo` — Touch ID for terminal sudo
+- `ruby_version` — Ruby version for rbenv
+- `mint_packages` — Swift CLI tools
+- `xcode_version` — Xcode version for xcodes
 - `vaultwarden_secrets` — Environment variables
 - `sparkle_key` — Sparkle signing key
 - `ssh_keys` — SSH keys to restore
@@ -133,6 +148,7 @@ Edit `config.yml` to customize:
 |-----------|------|----------|
 | `OpenAI API Key` | Login | Password = API key |
 | `GitHub Token` | Login | Password = PAT |
+| `Apple ID Credentials` | Login | Username + Password for xcodes |
 | `Sparkle EdDSA Key` | Login | Password = private key |
 | `SSH Private Key (ed25519)` | Secure Note | Full key content |
 | `SSH Private Key (RSA)` | Secure Note | Full key content |

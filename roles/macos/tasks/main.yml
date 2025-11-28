@@ -7,3 +7,55 @@
     value: "{{ item.value }}"
   loop: "{{ macos_defaults }}"
   when: configure_macos_defaults | default(false)
+
+# =============================================================================
+# Touch ID for sudo
+# =============================================================================
+- name: Check if Touch ID PAM module exists
+  ansible.builtin.stat:
+    path: /usr/lib/pam/pam_tid.so.2
+  register: pam_tid
+
+- name: Enable Touch ID for sudo
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/pam.d/sudo_local
+    line: "auth       sufficient     pam_tid.so"
+    create: true
+    mode: "0444"
+    insertbefore: BOF
+  when:
+    - pam_tid.stat.exists
+    - enable_touchid_sudo | default(true)
+
+# =============================================================================
+# Dock Apps Configuration
+# =============================================================================
+- name: Configure Dock apps
+  when: dock_apps is defined and dock_apps | length > 0
+  block:
+    - name: Clear existing Dock apps
+      ansible.builtin.shell: defaults write com.apple.dock persistent-apps -array
+      changed_when: true
+
+    - name: Add apps to Dock
+      ansible.builtin.shell: |
+        defaults write com.apple.dock persistent-apps -array-add \
+          "<dict>
+            <key>tile-data</key>
+            <dict>
+              <key>file-data</key>
+              <dict>
+                <key>_CFURLString</key>
+                <string>{{ item.path }}</string>
+                <key>_CFURLStringType</key>
+                <integer>0</integer>
+              </dict>
+            </dict>
+          </dict>"
+      loop: "{{ dock_apps }}"
+      changed_when: true
+
+    - name: Restart Dock
+      ansible.builtin.command: killall Dock
+      changed_when: true

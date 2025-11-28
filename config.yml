@@ -200,6 +200,44 @@ macos_defaults:
     key: HIDScrollZoomModifierMask
     type: int
     value: 262144
+
+# =============================================================================
+# Dock Apps (in order, left to right)
+# =============================================================================
+# Set dock_apps to configure your Dock. Uses app paths.
+# Comment out or remove to skip Dock configuration.
+dock_apps:
+  # System Apps
+  - { name: "Apps", path: "/System/Applications/Apps.app" }
+  - { name: "Safari", path: "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" }
+  - { name: "Messages", path: "/System/Applications/Messages.app" }
+  - { name: "Mail", path: "/System/Applications/Mail.app" }
+  - { name: "Maps", path: "/System/Applications/Maps.app" }
+  - { name: "FaceTime", path: "/System/Applications/FaceTime.app" }
+  - { name: "Calendar", path: "/System/Applications/Calendar.app" }
+  - { name: "Contacts", path: "/System/Applications/Contacts.app" }
+  - { name: "Reminders", path: "/System/Applications/Reminders.app" }
+  - { name: "Notes", path: "/System/Applications/Notes.app" }
+  - { name: "Freeform", path: "/System/Applications/Freeform.app" }
+  # Dev Tools
+  - { name: "Visual Studio Code", path: "/Applications/Visual Studio Code.app" }
+  - { name: "Xcode", path: "/Applications/Xcode.app" }
+  - { name: "Terminal", path: "/System/Applications/Utilities/Terminal.app" }
+  - { name: "System Settings", path: "/System/Applications/System Settings.app" }
+  - { name: "Fork", path: "/Applications/Fork.app" }
+  # AI & Communication
+  - { name: "ChatGPT", path: "/Applications/ChatGPT.app" }
+  - { name: "Telegram", path: "/Applications/Telegram.app" }
+  - { name: "WhatsApp", path: "/Applications/WhatsApp.app" }
+  # Utilities
+  - { name: "RustDesk", path: "/Applications/RustDesk.app" }
+  - { name: "Google Chrome", path: "/Applications/Google Chrome.app" }
+  - { name: "Preview", path: "/System/Applications/Preview.app" }
+  - { name: "Simulator", path: "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" }
+
+# Enable Touch ID for sudo (fingerprint authentication in terminal)
+enable_touchid_sudo: true
+
 # Vaultwarden/Bitwarden secrets
 # These will be fetched via `bw` CLI and written to ~/.zshrc.local
 # Server: https://vault.pedro.am
