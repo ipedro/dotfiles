@@ -299,6 +299,7 @@ developer_repos:
   - { name: "swiftui-styled-view", repo: "git@github.com:ipedro/swiftui-styled-view.git" }
   - { name: "swift-choosable", repo: "git@github.com:ipedro/swift-choosable.git" }
   - { name: "Inspector", repo: "git@github.com:ipedro/Inspector.git" }
+  - { name: "AppLogger", repo: "git@github.com:ipedro/AppLogger.git" }
   # Website
   - { name: "swift-pallet-com", repo: "git@github.com:ipedro/swift-pallet-com.git" }
   # Utilities
