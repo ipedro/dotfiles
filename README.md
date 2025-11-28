@@ -42,8 +42,11 @@ Installed via [xcodes](https://github.com/xcodeReleases/xcodes) CLI for better v
 ### Dotfiles
 
 - `.zshrc` / `.zprofile` — Shell configuration
-- `.gitconfig` / `.gitignore_global` — Git configuration
+- `.gitconfig` — Git config with **SSH commit signing** enabled
+- `.gitignore_global` — Global gitignore
 - VS Code settings and extensions
+
+> **Note:** Existing dotfiles are automatically backed up before being replaced (e.g., `.zshrc.backup.1732789200`)
 
 ### macOS Configuration
 
@@ -70,12 +73,14 @@ dotfiles/
 ├── files/                   # Dotfiles to symlink
 │   ├── .zshrc
 │   ├── .zprofile
-│   ├── .gitconfig
+│   ├── .gitconfig           # Git config with SSH signing
 │   ├── .gitignore_global
+│   ├── ssh_config           # SSH config (optional)
 │   └── vscode/settings.json
+├── Brewfile                 # Homebrew bundle (reference)
 └── roles/                   # Ansible roles
     ├── homebrew/            # Packages, casks, MAS apps
-    ├── dotfiles/            # Shell & git configs
+    ├── dotfiles/            # Shell & git configs (with backup)
     ├── vscode/              # VS Code settings & extensions
     ├── macos/               # System prefs, Dock, Touch ID
     ├── devtools/            # rbenv, Mint, Xcode setup
@@ -88,6 +93,19 @@ dotfiles/
 
 ```zsh
 ansible-playbook main.yml --ask-become-pass
+```
+
+### Update Existing Setup
+
+```zsh
+./update.sh                     # Pull latest and re-run
+./update.sh --tags homebrew     # Update specific roles only
+```
+
+### Restore Secrets Only
+
+```zsh
+./restore-secrets.sh            # Requires bw login first
 ```
 
 ### Run Specific Roles
@@ -152,6 +170,17 @@ Edit `config.yml` to customize:
 | `Sparkle EdDSA Key` | Login | Password = private key |
 | `SSH Private Key (ed25519)` | Secure Note | Full key content |
 | `SSH Private Key (RSA)` | Secure Note | Full key content |
+
+## Post-Install: Enable Git SSH Signing on GitHub
+
+After setup, add your SSH signing key to GitHub:
+
+1. Copy your public key: `cat ~/.ssh/id_ed25519.pub | pbcopy`
+2. Go to [GitHub SSH Keys](https://github.com/settings/keys)
+3. Click "New SSH key" → Key type: **Signing Key**
+4. Paste and save
+
+Your commits will now show as "Verified" ✓
 
 ## Development
 

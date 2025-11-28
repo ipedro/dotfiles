@@ -1,4 +1,33 @@
 ---
+# =============================================================================
+# Backup existing configs before overwriting
+# =============================================================================
+- name: Check for existing dotfiles to backup
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/{{ item }}"
+  loop:
+    - .zshrc
+    - .zprofile
+    - .gitconfig
+    - .gitignore_global
+  register: existing_dotfiles
+
+- name: Backup existing dotfiles (if not symlinks)
+  ansible.builtin.copy:
+    src: "{{ ansible_env.HOME }}/{{ item.item }}"
+    dest: "{{ ansible_env.HOME }}/{{ item.item }}.backup.{{ ansible_date_time.epoch }}"
+    remote_src: true
+    mode: preserve
+  loop: "{{ existing_dotfiles.results }}"
+  when:
+    - item.stat.exists
+    - not item.stat.islnk
+  loop_control:
+    label: "{{ item.item }}"
+
+# =============================================================================
+# Setup directories and symlinks
+# =============================================================================
 - name: Ensure dotfiles directory exists
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/Developer/dotfiles"
@@ -30,6 +59,14 @@
     path: "{{ ansible_env.HOME }}/.ssh"
     state: directory
     mode: "0700"
+
+- name: Copy SSH config
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/files/ssh_config"
+    dest: "{{ ansible_env.HOME }}/.ssh/config"
+    mode: "0600"
+    backup: true
+  when: ssh_config_managed | default(false)
 
 - name: Check if .zshrc.local exists
   ansible.builtin.stat:

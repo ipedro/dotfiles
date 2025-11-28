@@ -1,0 +1,25 @@
+# SSH Config - managed by dotfiles
+# Set ssh_config_managed: true in config.yml to deploy
+
+# Default settings for all hosts
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+
+# Local network host (Raspberry Pi, NAS, etc.)
+Host 192.168.0.118
+  HostName 192.168.0.118
+  User pedro
+  ForwardAgent yes
+  GSSAPIAuthentication no
+  IPQoS throughput
+  ServerAliveInterval 60
+  ServerAliveCountMax 3
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%r@%h:%p
+  ControlPersist 10m
+
+# AWS CodeCommit
+Host git-codecommit.*.amazonaws.com
+  User APKA2S6D3P6UTQHFT5DM

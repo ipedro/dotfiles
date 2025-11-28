@@ -1,11 +1,15 @@
 # Statistics utility to count lines of code
 brew "cloc"
+# GitHub command-line tool
+brew "gh"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
 # Configurable static site generator
 brew "hugo"
 # Update of iperf: measures TCP, UDP, and SCTP bandwidth
 brew "iperf3"
+# Mac App Store command-line interface
+brew "mas"
 # Dependency manager that installs and runs Swift command-line tool packages
 brew "mint"
 # Open-source, cross-platform JavaScript runtime environment
@@ -33,6 +37,30 @@ cask "font-fira-code"
 cask "ollama-app"
 # Install and switch between multiple versions of Xcode
 cask "xcodes-app"
+mas "1Blocker", id: 1365531024
+mas "AusweisApp", id: 948660805
+mas "Bitwarden", id: 1352778147
+mas "Blackmagic Disk Speed Test", id: 425264550
+mas "Dark Mode for Safari", id: 1397180934
+mas "DevCleaner", id: 1388020431
+mas "Flighty", id: 1358823008
+mas "Folder Quick Look", id: 6753110395
+mas "GarageBand", id: 682658836
+mas "Home Assistant", id: 1099568401
+mas "Infuse", id: 1136220934
+mas "Keynote", id: 409183694
+mas "Live Home 3D", id: 1066144116
+mas "NordVPN", id: 905953485
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Pixelmator Pro", id: 1289583905
+mas "RocketSim", id: 1504940162
+mas "Shapr3D", id: 1091675654
+mas "Telegram", id: 747648890
+mas "TestFlight", id: 899247664
+mas "WhatsApp", id: 310633997
+mas "Xcode", id: 497799835
+mas "xcsort", id: 1153337296
 vscode "budparr.language-hugo-vscode"
 vscode "davidanson.vscode-markdownlint"
 vscode "esbenp.prettier-vscode"
