@@ -183,6 +183,24 @@ macos_defaults:
     type: int
     value: 100
 
+  # =============================================================================
+  # Accessibility
+  # =============================================================================
+  # Enable Ctrl + two-finger scroll/pan to zoom
+  - domain: com.apple.universalaccess
+    key: closeViewScrollWheelToggle
+    type: bool
+    value: true
+  # Use Control key as modifier (262144 = Control, 524288 = Option, 1048576 = Command)
+  - domain: com.apple.AppleMultitouchTrackpad
+    key: HIDScrollZoomModifierMask
+    type: int
+    value: 262144
+  # Same for Bluetooth trackpad
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: HIDScrollZoomModifierMask
+    type: int
+    value: 262144
 # Vaultwarden/Bitwarden secrets
 # These will be fetched via `bw` CLI and written to ~/.zshrc.local
 # Server: https://vault.pedro.am
