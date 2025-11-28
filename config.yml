@@ -307,6 +307,7 @@ dock_apps:
   - { name: "Fork", path: "/Applications/Fork.app" }
   # AI & Communication
   - { name: "ChatGPT", path: "/Applications/ChatGPT.app" }
+  - { name: "Discord", path: "/Applications/Discord.app" }
   - { name: "Telegram", path: "/Applications/Telegram.app" }
   - { name: "WhatsApp", path: "/Applications/WhatsApp.app" }
   # Utilities
