@@ -1,5 +1,7 @@
 ---
 # App-specific configuration restoration
+# Exports settings with: defaults export <domain> <file>.plist
+# Update configs by re-exporting after making changes in the app
 
 # =============================================================================
 # BetterDisplay
@@ -11,9 +13,52 @@
 
 - name: Restore BetterDisplay settings
   ansible.builtin.shell: |
-    # Stop BetterDisplay if running
     killall BetterDisplay 2>/dev/null || true
-    # Import settings
     defaults import pro.betterdisplay.BetterDisplay "{{ playbook_dir }}/files/app-configs/BetterDisplay.plist"
   when: betterdisplay_config.stat.exists
+  changed_when: true
+
+# =============================================================================
+# Fork (Git client)
+# =============================================================================
+- name: Check if Fork config exists
+  ansible.builtin.stat:
+    path: "{{ playbook_dir }}/files/app-configs/Fork.plist"
+  register: fork_config
+
+- name: Restore Fork settings
+  ansible.builtin.shell: |
+    killall Fork 2>/dev/null || true
+    defaults import com.DanPristupov.Fork "{{ playbook_dir }}/files/app-configs/Fork.plist"
+  when: fork_config.stat.exists
+  changed_when: true
+
+# =============================================================================
+# Terminal.app
+# =============================================================================
+- name: Check if Terminal config exists
+  ansible.builtin.stat:
+    path: "{{ playbook_dir }}/files/app-configs/Terminal.plist"
+  register: terminal_config
+
+- name: Restore Terminal settings
+  ansible.builtin.shell: |
+    killall Terminal 2>/dev/null || true
+    defaults import com.apple.Terminal "{{ playbook_dir }}/files/app-configs/Terminal.plist"
+  when: terminal_config.stat.exists
+  changed_when: true
+
+# =============================================================================
+# Xcode
+# =============================================================================
+- name: Check if Xcode config exists
+  ansible.builtin.stat:
+    path: "{{ playbook_dir }}/files/app-configs/Xcode.plist"
+  register: xcode_config
+
+- name: Restore Xcode settings
+  ansible.builtin.shell: |
+    killall Xcode 2>/dev/null || true
+    defaults import com.apple.dt.Xcode "{{ playbook_dir }}/files/app-configs/Xcode.plist"
+  when: xcode_config.stat.exists
   changed_when: true
