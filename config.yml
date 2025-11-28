@@ -95,39 +95,93 @@ vscode_extensions:
   - openai.chatgpt
   - swiftlang.swift-vscode
 
-# macOS defaults (optional - set configure_macos_defaults: true to enable)
-configure_macos_defaults: false
+# macOS defaults - mirrors current Mac mini setup
+# Set configure_macos_defaults: true to apply on new machine
+configure_macos_defaults: true
 macos_defaults:
-  # Finder: show all filename extensions
-  - domain: NSGlobalDomain
-    key: AppleShowAllExtensions
-    type: bool
-    value: true
-  # Finder: show hidden files
+  # =============================================================================
+  # Finder
+  # =============================================================================
+  # Show path bar at bottom of Finder windows
   - domain: com.apple.finder
-    key: AppleShowAllFiles
+    key: ShowPathbar
     type: bool
     value: true
-  # Dock: auto-hide
-  - domain: com.apple.dock
-    key: autohide
+  # Show status bar at bottom of Finder windows
+  - domain: com.apple.finder
+    key: ShowStatusBar
     type: bool
     value: true
-  # Dock: minimize animation effect
-  - domain: com.apple.dock
-    key: mineffect
+  # Default to List view (Nlsv = List, icnv = Icon, clmv = Column, Flwv = Gallery)
+  - domain: com.apple.finder
+    key: FXPreferredViewStyle
     type: string
-    value: scale
-  # Keyboard: fast key repeat
-  - domain: NSGlobalDomain
-    key: KeyRepeat
+    value: Nlsv
+
+  # =============================================================================
+  # Dock
+  # =============================================================================
+  # Dock icon size (pixels)
+  - domain: com.apple.dock
+    key: tilesize
     type: int
-    value: 2
-  # Keyboard: short delay before repeat
+    value: 41
+  # Enable magnification
+  - domain: com.apple.dock
+    key: magnification
+    type: bool
+    value: true
+
+  # =============================================================================
+  # Keyboard & Input
+  # =============================================================================
+  # Disable auto-capitalization
   - domain: NSGlobalDomain
-    key: InitialKeyRepeat
+    key: NSAutomaticCapitalizationEnabled
+    type: bool
+    value: false
+  # Enable auto-period (double-space inserts period)
+  - domain: NSGlobalDomain
+    key: NSAutomaticPeriodSubstitutionEnabled
+    type: bool
+    value: true
+
+  # =============================================================================
+  # Menu Bar
+  # =============================================================================
+  # Show day of week in menu bar clock
+  - domain: com.apple.menuextra.clock
+    key: ShowDayOfWeek
+    type: bool
+    value: true
+
+  # =============================================================================
+  # Safari (Developer)
+  # =============================================================================
+  # Show full URL in address bar
+  - domain: com.apple.Safari
+    key: ShowFullURLInSmartSearchField
+    type: bool
+    value: true
+  # Enable Develop menu
+  - domain: com.apple.Safari
+    key: IncludeDevelopMenu
+    type: bool
+    value: true
+  # Enable Web Inspector
+  - domain: com.apple.Safari
+    key: WebKitDeveloperExtrasEnabledPreferenceKey
+    type: bool
+    value: true
+
+  # =============================================================================
+  # Activity Monitor
+  # =============================================================================
+  # Show all processes (100 = All Processes)
+  - domain: com.apple.ActivityMonitor
+    key: ShowCategory
     type: int
-    value: 15
+    value: 100
 
 # Vaultwarden/Bitwarden secrets
 # These will be fetched via `bw` CLI and written to ~/.zshrc.local
