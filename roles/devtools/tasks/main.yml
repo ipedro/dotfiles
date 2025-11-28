@@ -1,0 +1,106 @@
+---
+# Dev tooling setup: rbenv Ruby, Mint packages, Xcode
+
+# =============================================================================
+# rbenv - Ruby Version Manager
+# =============================================================================
+- name: Install Ruby via rbenv
+  when: ruby_version is defined
+  block:
+    - name: Check if Ruby version is installed
+      ansible.builtin.shell: |
+        source ~/.zprofile 2>/dev/null || true
+        rbenv versions --bare | grep -q "^{{ ruby_version }}$"
+      args:
+        executable: /bin/zsh
+      register: ruby_installed
+      changed_when: false
+      failed_when: false
+
+    - name: Install Ruby {{ ruby_version }}
+      ansible.builtin.shell: |
+        source ~/.zprofile 2>/dev/null || true
+        rbenv install {{ ruby_version }}
+      args:
+        executable: /bin/zsh
+      when: ruby_installed.rc != 0
+      register: ruby_install
+      changed_when: ruby_install.rc == 0
+
+    - name: Set Ruby {{ ruby_version }} as global default
+      ansible.builtin.shell: |
+        source ~/.zprofile 2>/dev/null || true
+        rbenv global {{ ruby_version }}
+      args:
+        executable: /bin/zsh
+      register: ruby_global
+      changed_when: ruby_global.rc == 0
+
+    - name: Rehash rbenv shims
+      ansible.builtin.shell: |
+        source ~/.zprofile 2>/dev/null || true
+        rbenv rehash
+      args:
+        executable: /bin/zsh
+      changed_when: false
+
+# =============================================================================
+# Mint - Swift Package Manager for CLI tools
+# =============================================================================
+- name: Create Mintfile from config
+  ansible.builtin.template:
+    src: Mintfile.j2
+    dest: "{{ ansible_env.HOME }}/.config/mint/Mintfile"
+    mode: "0644"
+  when: mint_packages is defined and mint_packages | length > 0
+
+- name: Bootstrap Mint packages from Mintfile
+  ansible.builtin.shell: |
+    cd ~/.config/mint && mint bootstrap
+  args:
+    executable: /bin/zsh
+  when: mint_packages is defined and mint_packages | length > 0
+  register: mint_bootstrap
+  changed_when: "'Installed' in mint_bootstrap.stdout or 'Cloning' in mint_bootstrap.stdout"
+
+# =============================================================================
+# Xcode - Full IDE installation via xcodes
+# =============================================================================
+- name: Install and configure Xcode
+  when: xcode_version is defined
+  block:
+    - name: Check if Xcode is installed
+      ansible.builtin.stat:
+        path: /Applications/Xcode.app
+      register: xcode_app
+
+    - name: Install Xcode via xcodes (if not present)
+      ansible.builtin.shell: |
+        # xcodes requires Apple ID credentials
+        # Set XCODES_USERNAME and XCODES_PASSWORD in ~/.zshrc.local for automation
+        if [ -n "$XCODES_USERNAME" ] && [ -n "$XCODES_PASSWORD" ]; then
+          xcodes install "{{ xcode_version }}" --select
+        else
+          echo "SKIP: Set XCODES_USERNAME and XCODES_PASSWORD for automated Xcode installation"
+          echo "Manual: xcodes install {{ xcode_version }} --select"
+        fi
+      args:
+        executable: /bin/zsh
+      when: not xcode_app.stat.exists
+      register: xcode_install
+      changed_when: "'Installed' in xcode_install.stdout"
+
+    - name: Accept Xcode license
+      become: true
+      ansible.builtin.command: xcodebuild -license accept
+      register: xcode_license
+      changed_when: xcode_license.rc == 0
+      failed_when: false
+      when: xcode_app.stat.exists or (xcode_install is defined and xcode_install.changed)
+
+    - name: Install additional Xcode components
+      ansible.builtin.command: xcodebuild -runFirstLaunch
+      register: xcode_firstlaunch
+      changed_when: xcode_firstlaunch.rc == 0
+      failed_when: false
+      when: xcode_app.stat.exists or (xcode_install is defined and xcode_install.changed)

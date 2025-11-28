@@ -18,5 +18,8 @@
       tags: [macos]
       when: configure_macos_defaults | default(false)
 
+    - role: devtools
+      tags: [devtools, ruby, mint, xcode]
+
     - role: secrets
       tags: [secrets, sparkle, ssh]

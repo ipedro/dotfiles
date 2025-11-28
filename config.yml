@@ -67,7 +67,6 @@ mas_apps:
   - { id: 747648890, name: "Telegram" }
   - { id: 899247664, name: "TestFlight" }
   - { id: 310633997, name: "WhatsApp" }
-  - { id: 497799835, name: "Xcode" }
   - { id: 1153337296, name: "xcsort" }
 
 # Apps to remove (bundled bloatware)
@@ -218,3 +217,20 @@ sparkle_key:
 ssh_keys:
   - { bw_name: "SSH Private Key (ed25519)", filename: "id_ed25519" }
   - { bw_name: "SSH Private Key (RSA)", filename: "id_rsa" }
+
+# =============================================================================
+# Dev Tooling Configuration
+# =============================================================================
+
+# Ruby version to install via rbenv
+ruby_version: "3.3.6"
+
+# Mint packages (Swift CLI tools)
+# Format: owner/repo@version
+mint_packages:
+  - SwiftGen/SwiftGen@6.6.3
+
+# Xcode version to install via xcodes
+# Requires XCODES_USERNAME and XCODES_PASSWORD in ~/.zshrc.local for automation
+# Or install manually: xcodes install <version> --select
+xcode_version: "16.2"
