@@ -203,9 +203,12 @@ macos_defaults:
 # Vaultwarden/Bitwarden secrets
 # These will be fetched via `bw` CLI and written to ~/.zshrc.local
 # Server: https://vault.pedro.am
+# Supports: password (default), username fields from Login items
 vaultwarden_secrets:
   - { bw_name: "OpenAI API Key", env_var: "OPENAI_API_KEY" }
   - { bw_name: "GitHub Token", env_var: "GITHUB_TOKEN" }
+  - { bw_name: "Apple ID Credentials", env_var: "XCODES_USERNAME", field: "username" }
+  - { bw_name: "Apple ID Credentials", env_var: "XCODES_PASSWORD", field: "password" }
 
 # Sparkle EdDSA signing key (stored in Keychain)
 # Create a Login item in Vaultwarden with password = private key
