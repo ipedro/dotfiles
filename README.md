@@ -160,7 +160,7 @@ Edit `config.yml` to customize:
 - `developer_repos` — Git repos to clone into ~/Developer
 - `ruby_version` — Ruby version for rbenv
 - `mint_packages` — Swift CLI tools
-- `xcode_version` — Xcode version for xcodes
+- `install_xcode` — Auto-install latest stable Xcode
 - `vaultwarden_secrets` — Environment variables
 - `sparkle_key` — Sparkle signing key
 - `ssh_keys` — SSH keys to restore

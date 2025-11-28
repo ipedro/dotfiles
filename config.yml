@@ -303,10 +303,10 @@ ruby_version: "3.3.6"
 mint_packages:
   - SwiftGen/SwiftGen@6.6.3
 
-# Xcode version to install via xcodes
-# Requires XCODES_USERNAME and XCODES_PASSWORD in ~/.zshrc.local for automation
-# Or install manually: xcodes install <version> --select
-xcode_version: "16.2"
+# Xcode - installs latest stable via xcodes CLI
+# Requires XCODES_USERNAME and XCODES_PASSWORD from Vaultwarden
+# Set to false to skip Xcode installation
+install_xcode: true
 
 # =============================================================================
 # Developer Workspace

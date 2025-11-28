@@ -67,28 +67,34 @@
 # Xcode - Full IDE installation via xcodes
 # =============================================================================
 - name: Install and configure Xcode
-  when: xcode_version is defined
+  when: install_xcode | default(true)
   block:
     - name: Check if Xcode is installed
       ansible.builtin.stat:
         path: /Applications/Xcode.app
       register: xcode_app
 
-    - name: Install Xcode via xcodes (if not present)
+    - name: Install latest stable Xcode via xcodes (if not present)
       ansible.builtin.shell: |
         # xcodes requires Apple ID credentials
         # Set XCODES_USERNAME and XCODES_PASSWORD in ~/.zshrc.local for automation
         if [ -n "$XCODES_USERNAME" ] && [ -n "$XCODES_PASSWORD" ]; then
-          xcodes install "{{ xcode_version }}" --select
+          # Get latest stable version (non-beta, non-RC)
+          LATEST=$(xcodes list | grep -v "Beta\|Release Candidate" | head -1 | awk '{print $1}')
+          echo "Installing Xcode $LATEST..."
+          xcodes install "$LATEST" --select
         else
           echo "SKIP: Set XCODES_USERNAME and XCODES_PASSWORD for automated Xcode installation"
-          echo "Manual: xcodes install {{ xcode_version }} --select"
+          echo "Manual: xcodes install --latest --select"
         fi
       args:
         executable: /bin/zsh
+      environment:
+        XCODES_USERNAME: "{{ lookup('env', 'XCODES_USERNAME') }}"
+        XCODES_PASSWORD: "{{ lookup('env', 'XCODES_PASSWORD') }}"
       when: not xcode_app.stat.exists
       register: xcode_install
-      changed_when: "'Installed' in xcode_install.stdout"
+      changed_when: "'Installed' in xcode_install.stdout or 'Installing' in xcode_install.stdout"
 
     - name: Accept Xcode license
       become: true
