@@ -30,7 +30,7 @@ homebrew_casks:
   - blender
   - chatgpt
   - creality-print
-  - font-fira-code
+  - font-jetbrains-mono
   - fork
   - freecad
   - google-chrome
