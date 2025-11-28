@@ -1,0 +1,9 @@
+[user]
+	name = Pedro Almeida
+	email = ip4dro@gmail.com
+
+[core]
+	excludesfile = ~/.gitignore_global
+
+[credential]
+	helper = osxkeychain

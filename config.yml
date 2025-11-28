@@ -1,0 +1,83 @@
+---
+# Homebrew taps
+homebrew_taps:
+  - homebrew/cask-fonts
+
+# Homebrew packages (formulae)
+homebrew_packages:
+  - cloc
+  - go
+  - hugo
+  - iperf3
+  - mint
+  - node
+  - pipx
+  - python@3.14
+  - rbenv
+  - ripgrep
+  - swift-format
+  - swiftformat
+  - swiftlint
+  - xclogparser
+
+# Homebrew casks (GUI apps)
+homebrew_casks:
+  - android-platform-tools
+  - font-fira-code
+  - ollama-app
+  - xcodes-app
+
+# VS Code extensions
+vscode_extensions:
+  - budparr.language-hugo-vscode
+  - davidanson.vscode-markdownlint
+  - esbenp.prettier-vscode
+  - github.copilot
+  - github.copilot-chat
+  - github.vscode-github-actions
+  - llvm-vs-code-extensions.lldb-dap
+  - ms-vscode-remote.remote-containers
+  - ms-vscode-remote.remote-ssh
+  - ms-vscode-remote.remote-ssh-edit
+  - ms-vscode-remote.remote-wsl
+  - ms-vscode-remote.vscode-remote-extensionpack
+  - ms-vscode.remote-explorer
+  - ms-vscode.remote-server
+  - nickeolofsson.remember-mcp-vscode
+  - numso.prettier-standard-vscode
+  - openai.chatgpt
+  - swiftlang.swift-vscode
+
+# macOS defaults (optional - set configure_macos_defaults: true to enable)
+configure_macos_defaults: false
+macos_defaults:
+  # Finder: show all filename extensions
+  - domain: NSGlobalDomain
+    key: AppleShowAllExtensions
+    type: bool
+    value: true
+  # Finder: show hidden files
+  - domain: com.apple.finder
+    key: AppleShowAllFiles
+    type: bool
+    value: true
+  # Dock: auto-hide
+  - domain: com.apple.dock
+    key: autohide
+    type: bool
+    value: true
+  # Dock: minimize animation effect
+  - domain: com.apple.dock
+    key: mineffect
+    type: string
+    value: scale
+  # Keyboard: fast key repeat
+  - domain: NSGlobalDomain
+    key: KeyRepeat
+    type: int
+    value: 2
+  # Keyboard: short delay before repeat
+  - domain: NSGlobalDomain
+    key: InitialKeyRepeat
+    type: int
+    value: 15

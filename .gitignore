@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Secrets - NEVER commit
+.zshrc.local
+*.local
+
+# Ansible
+*.retry
+
+# Python
+__pycache__/
+*.pyc

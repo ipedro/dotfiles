@@ -1,0 +1,699 @@
+{
+    "security.workspace.trust.untrustedFiles": "open",
+    "chat.editing.confirmEditRequestRemoval": false,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "explorer.confirmDragAndDrop": false,
+    "git.openRepositoryInParentFolders": "never",
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "chat.tools.terminal.autoApprove": {
+        "swift": true,
+        "timeout": true,
+        "warning:": true,
+        "Build": true,
+        "sed": true,
+        "test.*passed": true,
+        "test.*failed": true,
+        "tests?": true,
+        "git add": true,
+        "git commit": true,
+        "cd /Users/pedro/Developer/swift-package-shop/swift-package-shop && sed -i '' 's/XCTAssertTrue(\\(.*\\), \\(.*\\))/#expect(\\1, \\2)/g' Tests/PackageShopModelsTests/FileSuggestionEntryTests.swift": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "cd /Users/pedro/Developer/swift-package-shop/swift-package-shop && sed -i '' 's/XCTAssertFalse(\\(.*\\), \\(.*\\))/#expect(!\\1, \\2)/g' Tests/PackageShopModelsTests/FileSuggestionEntryTests.swift": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "sed -i '' 's/XCTAssertEqual(\\(.*\\), \\(.*\\), \\(.*\\))/#expect(\\1 == \\2, \\3)/g' Tests/PackageShopModelsTests/FileSuggestionEntryTests.swift": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "sed -i '' 's/XCTAssertNotEqual(\\(.*\\), \\(.*\\), \\(.*\\))/#expect(\\1 != \\2, \\3)/g' Tests/PackageShopModelsTests/FileSuggestionEntryTests.swift": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "sed -i '' 's/func test\\([A-Za-z_]*\\)_\\([A-Za-z_]*\\)_\\([A-Za-z_]*\\)()/@Test(\"\\1 \\2 \\3\")\\n    func \\L\\1\\2\\3()/g' Tests/PackageShopModelsTests/FileSuggestionEntryTests.swift": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/tmp/temp_file": true,
+        "mv": true,
+        "/Users/pedro/Developer/swift-package-shop/swift-package-shop/Tests/PackageShopModelsTests/GitProviderTests.swift": true,
+        "/tmp/converted_git.swift": true,
+        "Tests/PackageShopModelsTests/GitProviderTests.swift": true,
+        "Tests/PackageShopModelsTests/FileSuggestionEntryTests.swift": true,
+        "cd /Users/pedro/Developer/swift-package-shop && git show HEAD:swift-package-shop/Tests/PackageShopModelsTests/GitProviderTests.swift | python3 /tmp/convert_tests_v2.py > swift-package-shop/Tests/PackageShopModelsTests/GitProviderTests.swift": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "git show HEAD:swift-package-shop/Tests/PackageShopModelsTests/FileSuggestionEntryTests.swift | python3 /tmp/convert_tests_v2.py > swift-package-shop/Tests/PackageShopModelsTests/FileSuggestionEntryTests.swift": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "throws": true,
+        "/)": true,
+        "/g'": true,
+        "Patterns\"": true,
+        "cd /Users/pedro/Developer/swift-package-shop && git commit -m \"refactor: convert all tests from XCTest to Swift Testing framework\n\n- Converted 6 test files with 77 tests to Swift Testing\n- Updated Package.swift to Swift 5.10 (avoiding Swift 6 concurrency issues)\n- Changed test structures from XCTestCase classes to @Suite structs\n- Replaced XCTAssert* with #expect assertions\n- Added @Test annotations with descriptive names\n- Added Foundation imports to test files requiring Foundation types\n- Fixed #expect(throws:) syntax for error handling tests\n- Updated Tests/README.md with Swift Testing examples and conventions\n- Added comprehensive testing section to AI_INSTRUCTIONS.md\n\nTest Files Converted:\n- CommandStackTests.swift (15 tests)\n- DistinctIDTests.swift (11 tests)\n- UUIDv7Tests.swift (8 tests)\n- CountedSetTests.swift (14 tests)\n- FileSuggestionEntryTests.swift (17 tests)\n- GitProviderTests.swift (22 tests)\n\nAll 77 tests passing in 0.007 seconds ✅\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "cd /Users/pedro/Developer/swift-package-shop && git add ARCHITECTURE_REVIEW.md && git commit -m \"docs: add comprehensive data layer architecture review and testability proposal\n\n- Analyzed current architecture with dependency mapping\n- Identified 5 key testability issues (tight coupling, file system deps, etc.)\n- Proposed protocol-based abstraction layer for dependency injection\n- Designed 4 core protocols: FileSystemScanning, WorkspaceLoading, ManifestPersistence, RecentDocumentsManaging\n- Provided complete implementation examples with mocks\n- Included 8+ test examples demonstrating usage\n- Outlined 5-phase migration strategy with zero breaking changes\n- Preserves current behavior while enabling 80%+ test coverage\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "git add ARCHITECTURE_REVIEW.md && git commit -m \"docs: add comprehensive data layer architecture review and testability proposal\n\n- Analyzed current architecture with dependency mapping\n- Identified 5 key testability issues (tight coupling, file system deps, etc.)\n- Proposed protocol-based abstraction layer for dependency injection\n- Designed 4 core protocols: FileSystemScanning, WorkspaceLoading, ManifestPersistence, RecentDocumentsManaging\n- Provided complete implementation examples with mocks\n- Included 8+ test examples demonstrating usage\n- Outlined 5-phase migration strategy with zero breaking changes\n- Preserves current behavior while enabling 80%+ test coverage\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "git commit -m \"docs: add comprehensive data layer architecture review and testability proposal\n\n- Analyzed current architecture with dependency mapping\n- Identified 5 key testability issues (tight coupling, file system deps, etc.)\n- Proposed protocol-based abstraction layer for dependency injection\n- Designed 4 core protocols: FileSystemScanning, WorkspaceLoading, ManifestPersistence, RecentDocumentsManaging\n- Provided complete implementation examples with mocks\n- Included 8+ test examples demonstrating usage\n- Outlined 5-phase migration strategy with zero breaking changes\n- Preserves current behavior while enabling 80%+ test coverage\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "git check-ignore": true,
+        "git ls-files": true,
+        "Implementations": true,
+        "passed": true,
+        "failed": true,
+        "✅)\"": true,
+        "git commit -m \"feat: refactor WorkspaceManager with dependency injection (Phase 2)\n\n- Refactored WorkspaceManager to accept injected dependencies\n- Added convenience init for production with default implementations\n- Added full init for testing with injectable mocks\n- Replaced direct FileScanner usage with FileSystemScanning protocol\n- Replaced WorkspaceInstance creation with WorkspaceLoading protocol\n- Replaced NSDocumentController with RecentDocumentsManaging protocol\n- Updated SPMWorkspaceLoader to properly handle diagnostics\n- Removed makeObservability() and makeCancellator() helper methods\n- Made loadRootManifests() async to work with protocol\n- Updated loadPackageManifests() to use async/await\n\nTesting:\n- Added 4 new WorkspaceManager unit tests demonstrating DI\n- Tests verify file scanning, error handling, and recent documents\n- All 81 tests passing (77 original + 4 new)\n- Tests use Mockable-generated mocks for clean test code\n\nBenefits:\n- WorkspaceManager is now fully testable in isolation\n- No SPM workspace or file system required for tests\n- Fast test execution (~0.110 seconds)\n- Clear separation of concerns via protocols\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "warning:)\"": true,
+        "Test": true,
+        "Executed": true,
+        "error:)\"": true,
+        "error:": true,
+        "Building)\"": true,
+        "Suite.*Tests": true,
+        "Building": true,
+        "swift test 2>&1 | grep -E \"(Suite.*Tests.*(started|passed|failed)|Test run|Executed.*tests)\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift test 2>&1 | grep -E \"(Suite.*Tests.*(passed|failed)|Test run with|passed after.*seconds$|failed after.*seconds)\" | tail -15": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "find": true,
+        "}": true,
+        "issue)\"": true,
+        "swift test 2>&1 | grep -E \"(ManifestUpdateHelper|Test run)\" | tail -5": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift test 2>&1 | grep -E \"(Test run|failed)\" | tail -2": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "warning": true,
+        "xcodebuild": true,
+        "tests": true,
+        "swift build 2>&1 | grep -E \"(error:|Build complete)\" | head -10": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "git checkout": true,
+        "cd /Users/pedro/Developer/swift-package-shop && git commit -m \"refactor: decompose WorkspaceState into focused substates\n\n- Created WorkspaceSubstates.swift with 4 domain-specific states:\n  - PackagesState: manifests, selection, diagnostics, commands\n  - DependenciesState: dependency index, selection, parsing\n  - LogsState: diagnostic logs management\n  - WindowState: UI dimensions and visibility\n  \n- Refactored WorkspaceState as coordinator pattern:\n  - Delegates to substates via computed properties\n  - Maintains backward compatibility (all public APIs unchanged)\n  - 27% smaller (561 → 408 lines)\n  \n- Benefits:\n  - Single responsibility per substate\n  - Testable in isolation\n  - Clear ownership boundaries\n  - Maintainable at scale\n  \n- All 140 tests pass\n- Full app builds successfully\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift build 2>&1 | grep -E \"(error:|warning:|Build complete)\" | head -20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "cd /Users/pedro/Developer/swift-package-shop/swift-package-shop && swift build 2>&1 | grep -E \"(error:|warning:|Build complete)\" | head -20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift build 2>&1 | grep -E \"(error:|Build complete)\" | head -20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "cd /Users/pedro/Developer/swift-package-shop/swift-package-shop && swift build 2>&1 | grep -E \"(error:|Build complete)\" | head -20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift test 2>&1 | grep -E \"(passed|failed|Test run)\" | tail -5": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift test 2>&1 | grep -E \"(IndexedDependencyViewModel|Test Suite|passed|failed)\" | head -30": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "started)\"": true,
+        "swift test --filter IndexedDependencyViewModel 2>&1 | grep -E \"(Test run|passed|failed)\" | tail -5": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "Suite)\"": true,
+        "/dev/null": true,
+        "swift build 2>&1 | grep -E \"(error|warning)\" | head -20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "error:\"": true,
+        "class": true,
+        "enum": true,
+        "protocol": true,
+        "final": true,
+        "if": true,
+        "print": true,
+        "prev": true,
+        "swift test 2>&1 | grep -A 2 -E \"(PackageLoader|Test run with)\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift test 2>&1 | grep -E \"(PackageLoader|passed|failed)\" | tail -30": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "PackageLoader": true,
+        "swift build 2>&1 | grep -E \"(error|warning:|Build complete)\" | tail -20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "rm": true,
+        "BUILD": true,
+        "open": true,
+        "xcodebuild -project Pallet.xcodeproj -scheme Pallet -configuration Debug clean build 2>&1 | grep -E \"(error|warning|Build Succeeded|BUILD SUCCEEDED)\" | tail -20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "xcodebuild -project Pallet.xcodeproj -scheme Pallet -configuration Debug build 2>&1 | grep -E \"(error|warning|Build Succeeded|BUILD SUCCEEDED)\" | tail -10": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "xcodebuild -scheme Pallet -configuration Debug build 2>&1 | grep -E \"(error:|warning:|BUILD)\" | tail -20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "cd /Users/pedro/Developer/swift-package-shop && xcodebuild -scheme Pallet -configuration Debug build 2>&1 | grep -E \"(error:|BUILD)\" | tail -5": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "xcodebuild -scheme Pallet -configuration Debug build 2>&1 | grep -E \"(error:|warning:|BUILD)\" | tail -15": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "xcodebuild -scheme Pallet -configuration Debug build 2>&1 | grep -E \"(error:|warning:|BUILD)\" | tail -10": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "python3 -m json.tool PackageShop/Localizable.xcstrings 2>&1 | head -5": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "brew": true,
+        "mint": true,
+        "mkdir": true,
+        "/Users/pedro/Developer/swift-package-shop/Scripts/generate-localizations.swift": true,
+        "swift build 2>&1 | grep -E \"(error|warning:|Build complete)\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift build 2>&1 | grep -E \"(error|Build complete)\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "cd /Users/pedro/Developer/swift-package-shop && git commit -m \"refactor: Improve localization key naming to avoid unnecessary suffixes\n\n- Updated generator to track vars and funcs separately\n- Swift allows 'static var copy' and 'static func copy(_:)' to coexist\n- Only add numeric suffixes when true conflicts exist:\n  - Same var name → add suffix\n  - Same func name with same param count → add suffix\n  - Var vs func with same name → no suffix needed (different signatures)\n- Result: cleaner API with .copy and .copy(_:) instead of .copy and .copy2(_:)\n- Consolidated copy strings using single quotes consistently\n- All 228 keys generated with improved naming scheme\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "PASS": true,
+        "FAIL": true,
+        "sed -i '' 's/\\.timeLimit(\\.seconds(30))/\\.timeLimit(.minutes(1))/g' Tests/PackageShopUITests/WorkspaceStateConcurrencyTests.swift && sed -i '' 's/\\.timeLimit(\\.seconds(10))/\\.timeLimit(.minutes(1))/g' Tests/PackageShopUITests/WorkspaceStateConcurrencyTests.swift Tests/PackageShopUITests/WorkspaceStatePackageLoaderTests.swift && echo \"Fixed timeouts\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift test --filter PackageShopUITests 2>&1 | grep -E \"(Test Suite|passed|failed|Test run)\" | tail -30": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "(swift": true,
+        "PID=$!": true,
+        "kill": true,
+        "Testing": true,
+        "All": true,
+        "(xcodebuild": true,
+        "xcodebuild test -scheme Pallet -testPlan Pallet -project Pallet.xcodeproj -destination 'platform=macOS' 2>&1 | grep -A 5 -E \"(AssetsTests|Test Suite.*passed|Test Suite.*failed)\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift build 2>&1 | grep -A 15 \"found 13 file(s)\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift build 2>&1 | grep -E \"(error:|warning:)\" | head -20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "cd /Users/pedro/Developer/swift-package-shop && git add -A && git commit -m \"fix: remove VStack frame that was pushing sidebar out\n\n- Remove .frame(maxWidth: .infinity, maxHeight: .infinity) from tree VStack\n- Only ScrollView needs sizing constraints\n- HSplitView will naturally manage the layout without forcing expansion\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "chmod": true,
+        "true": true,
+        "git status --porcelain; git add -A && git commit -m \"chore: normalize package layout (Sources/Tests) and remove top-level files\" || true": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "git rm": true,
+        "git add Package@swift-6.swift && git commit -m \"chore: add Swift 6 specific manifest (Package@swift-6.swift) to enable Swift 6 mode on newer toolchains\" || true": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "fix": true,
+        "./scripts/run-tests.sh": true,
+        "git add -A && git commit -m \"perf: small improvements (use allSatisfy, @inlinable) and add lazy-evaluation test\" || true": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "add": true,
+        "git add Sources/Choosable/Choosable.swift && git commit -m \"docs: add API comments for `or` and `when` clarifying laziness and chaining\" || true": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "git rm Sources/Choosable/Choosable.swift || true && git add -A && git commit -m \"refactor: split Choosable into smaller files (protocol/core/conformances)\" || true": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift build 2>&1 | grep -E \"(error|warning|Build complete)\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift build 2>&1 | grep -E \"(error|warning|Building)\" | head -n 20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "git pull": true,
+        "swift test 2>&1 | grep -E \"(Test Suite|Executed|passed|failed)\" | tail -15": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "sed -i.tmp 's/@Test(\"\\([^\"]*\\)\", \\.timeLimit(\\.seconds([0-9]*)))/@Test(\"\\1\")/g' Tests/ShowcaseTests/PerformanceTests.swift && rm Tests/ShowcaseTests/PerformanceTests.swift.tmp": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift test 2>&1 | grep -A 5 -E \"(passed|failed|Test Suite)\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "Issue)\"": true,
+        "Issue\"": true,
+        "Suite.*passed": true,
+        "Suite.*failed": true,
+        "swift test 2>&1 | grep -E \"(Test run with|passed|failed)\" | tail -5": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "Environment'": true,
+        "xcodebuildmcp)": true,
+        "git commit -m \"Add Swift 6.x package manifest with strict concurrency\n\n- Create Package@swift-6.swift for Swift 6.0+ toolchains\n- Enable ExistentialAny upcoming feature for explicit existential types\n- Add actor data race checks in debug builds (development mode)\n- Fix concurrency warnings in Examples (nonisolated(unsafe) for defaultValue)\n- Maintains backward compatibility with Swift 5.7 via default Package.swift\n- StrictConcurrency is enabled by default in Swift 6, no flag needed\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "git commit -m \"Add MCP Xcode build server configuration\n\n- Add .vscode/mcp.json with xcodebuildmcp server setup\n- Configure workspace root and scheme (PropertyPicker)\n- Remove obsolete Package@swift-5.9.swift and Package@swift-6.0.swift\n- Keep Package.swift (Swift 5.7) and Package@swift-6.swift (Swift 6.x)\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "cd /Users/pedro/Developer/swift-package-shop && git commit -m \"feat: Add two-tier graph system with simplified and full modes\n\n- Create DependencyGraphView with mode enum (simplified/full)\n- Simplified mode: compact inline graph in manifest view (300px height)\n- Full mode: interactive graph with all controls in dedicated window\n- Both modes use same DependencyGraphScrollView engine for consistency\n- Add 'Expand' button in simplified mode to open full window\n- Show quick stats (direct, transitive, cycles) in simplified header\n- Embed simplified graph in IndexedDependencyView above details\n- Update DependencyGraphWindowController to use full mode\n- Consistent rendering and layout across both presentations\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "(find": true,
+        "git add .vscode/instructions.md && git commit -m \"docs: Remove GitHub MCP from instructions (not configured)\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "cd /Users/pedro/Developer/swift-package-shop && git add -A && git commit -m \"feat: Add cycle highlighting to dependency graph\n\n- Implements visual circular dependency detection with red borders (3px)\n- Red edges (2.5px, 0.8 opacity) connect nodes in cycles\n- Toggle button with spring animation (progressive disclosure)\n- Button only visible when cycles exist (Apple-style)\n- Help tooltip shows cycle count\n- Follows Apple engineering patterns: declarative UI, spring animations\n- Phase 3.1 of dependency graph roadmap complete\n\n140 tests, 14 suites passing\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift test --filter Fix1 2>&1 | grep -E \"(Fix1_|Test Suite|Test Case|Executed|passed|failed)\" | tail -20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift test --filter PropertyInspectorTests.Fix1_DebouncingTests 2>&1 | grep -E \"(Test Case.*started|Test Case.*passed|Test Case.*failed)\" | head -20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "cd /Users/pedro/Developer/swiftui-property-inspector && git add -A && git commit -m \"✅ Baseline tests running successfully with Swift 6\n\nTest Results:\n- 7 tests executed, 4 passed, 3 failed (expected)\n- testBaseline_SearchTriggersImmediateUpdate: PASSED ✅\n  * Confirms broken behavior - no debouncing occurs\n- testExpected_RapidFireDebouncing: PASSED ✅\n- testIdenticalQueriesDeduped: PASSED ✅\n- testSearchPerformanceWithDebouncing: PASSED ✅\n  * Measured: 0.308s average, 6.7% std dev\n\nExpected Failures (prove debouncing doesn't work):\n- testEmptyQueryDebounces: FAILED ❌ (needs Fix #1)\n- testExpected_DebounceInterval: FAILED ❌ (needs Fix #1)\n- testExpected_SearchDebounces: FAILED ❌ (needs Fix #1)\n\nSwift 6 Status:\n✅ All concurrency issues resolved\n✅ All availability checks added\n⚠️ Minor warnings remain (Context.Data Sendable captures)\n🎯 Ready to implement Fix #1: Publishers.Debounce\n\nNext: Implement proper debouncing in Context.Data.setupDebouncing()\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift test --filter PropertyInspectorTests.Fix1_DebouncingTests 2>&1 | grep -E \"(Test Case.*started|Test Case.*passed|Test Case.*failed|Test Suite.*passed|Test Suite.*failed|Executed)\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift test --filter PropertyInspectorTests.Fix1_DebouncingTests 2>&1 | grep -E \"(Test Case|Test Suite.*passed|Test Suite.*failed|Executed)\" | head -30": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "Average": true,
+        "sed -i '' 's/let cache = PropertyCache()/let cache = PropertyCache.shared/g' Tests/Fix2_PropertyCachingBenchmarks.swift && sed -i '' 's/let cache = PropertyCache()/let cache = PropertyCache.shared/g' Tests/Fix2_PropertyCachingBenchmarks.swift": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift test 2>&1 | grep -E \"(Test Suite|Executed|passed|failed)\" | tail -20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift test 2>&1 | grep -E \"(Test Suite.*tests|Executed.*tests)\" | tail -10": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift test --filter ContextDataTests 2>&1 | grep -E \"(Test Case.*test|passed|failed)\" | tail -15": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift test 2>&1 | grep -E \"(Test Suite|Executed.*tests)\" | tail -20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "==)\"": true,
+        "swift test 2>&1 | grep -E \"(Test Suite|Executed.*tests|Test Case.*failed)\" | tail -30": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift test 2>&1 | grep -E \"(Test Suite|Executed.*tests|error:)\" | tail -25": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "git add -A && git commit -m \"perf: Cache string conversions in Property initialization\n\nConvert stringValue and stringValueType from computed properties to let constants.\n\nChanges:\n- Changed 'var stringValue: String' → 'let stringValue: String'\n- Changed 'var stringValueType: String' → 'let stringValueType: String'\n- Compute both once in init() and cache for lifetime of Property\n- Add documentation explaining caching rationale\n\nPerformance impact:\n- 20-30% faster search operations (no repeated string conversions)\n- Reduced memory allocation churn (strings created once, not per-access)\n- Faster equality checks and hashing (cached strings)\n\nHot paths optimized:\n- Context.Data.search() - accesses both strings for every property\n- PropertyInspectorRows - displays stringValue in UI\n- Property.== - compares stringValue for equality\n- Property.hash() - hashes stringValue\n- Debug logging - frequent string access\n\nTests: 44 executed, 0 failures, 1 skipped (100% pass rate)\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift build 2>&1 | grep -E \"(error:|warning:|Build complete)\" | tail -10": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "gh": true,
+        "yaml.safe_load(open('.github/workflows/ci.yml'))\"": true,
+        "swiftlint": true,
+        "Pedro": true,
+        "while": true,
+        "do": true,
+        "dir}README.md\"": true,
+        "then": true,
+        "dir}\"": true,
+        "fi": true,
+        "done": true,
+        "for": true,
+        "pedro\\": true,
+        "almeida\\": true,
+        "author\\": true,
+        "copyright\"": true,
+        "else": true,
+        "dir}.git\"": true,
+        "[[": true,
+        "dir%/}\"": true,
+        "for dir in swift-package-manager tokens ds swift-pallet-com; do echo \"=== $dir ===\"; git -C \"$dir\" remote get-url origin 2>/dev/null || echo \"no remote\"; done": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "git -C EnvironmentObjectRetentionExample remote get-url origin 2>/dev/null || echo \"no remote\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "cd /Users/pedro/Developer/swiftui-showcase && git add -A && git commit -m \"ci: improve workflow with dynamic test counts, codecov integration, and iOS build fixes\n\n- Add dynamic test count extraction from test output\n- Integrate Codecov for coverage reporting\n- Fix iOS testing to build ShowcaseExample project\n- Remove SPM cache steps (slower than direct resolution)\n- Simplify build steps (remove redundant macOS build)\n- Add test summary to GitHub step summary\n- Use ShowcaseExample Xcode project for iOS validation\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "git push": true,
+        "git revert": true,
+        "cd /Users/pedro/Developer/swiftui-showcase && git add ShowcaseExample/ShowcaseExample/Mocks/*.swift && git commit -m \"fix: update mock files to use explicit Topic references\n\n- Changed from dot-syntax (.mockCard) to explicit references (Topic.mockCard)\n- Required due to result builder API improvements\n- Fixes compilation errors in ShowcaseExample\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "awk": true,
+        "/'": true,
+        "xcodebuild build -project ShowcaseExample/ShowcaseExample.xcodeproj -scheme ShowcaseExample -destination 'platform=iOS Simulator,name=iPhone 16' -skipPackagePluginValidation -skipMacroValidation CODE_SIGN_IDENTITY=\"\" CODE_SIGNING_REQUIRED=NO 2>&1 | grep -E \"(error:|warning:|BUILD SUCCEEDED|BUILD FAILED)\" | head -20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "nm": true,
+        "/tmp/test_doc.swift": true,
+        "'EOF'": true,
+        "Chapter(\"Ch1\")": true,
+        "xcodebuild build -project ShowcaseExample/ShowcaseExample.xcodeproj -scheme ShowcaseExample -destination 'platform=iOS Simulator,name=iPhone 16' -skipPackagePluginValidation -skipMacroValidation CODE_SIGN_IDENTITY=\"\" CODE_SIGNING_REQUIRED=NO 2>&1 | grep -E \"(error:|BUILD SUCCEEDED|BUILD FAILED)\" | head -5": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "xcodebuild build -project ShowcaseExample/ShowcaseExample.xcodeproj -scheme ShowcaseExample -destination 'platform=macOS' CODE_SIGN_IDENTITY=\"\" CODE_SIGNING_REQUIRED=NO 2>&1 | grep -E \"(error:|BUILD SUCCEEDED|BUILD FAILED)\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "xcodebuild build -project ShowcaseExample/ShowcaseExample.xcodeproj -scheme ShowcaseExample -destination 'platform=iOS Simulator,name=iPhone 16' -skipPackagePluginValidation -skipMacroValidation CODE_SIGN_IDENTITY=\"\" CODE_SIGNING_REQUIRED=NO 2>&1 | grep -E \"(SystemComponents.swift.*error:|BUILD SUCCEEDED|BUILD FAILED)\" | head -3": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "=25": true,
+        "NR": true,
+        "=35": true,
+        "printf": true,
+        "swift build 2>&1 | grep -E \"(error:|warning:)\" | head -5": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "xcrun": true,
+        "coverage.lcov": true,
+        "coverage.lcov)": true,
+        "git fetch": true,
+        "git stash": true,
+        "git clone": true,
+        "cd /Users/pedro/Developer/swiftui-showcase && git add .github/workflows/ci.yml && git commit -m \"fix: use commit SHA for action-swiftlint to avoid Docker cache\n\n- Changed from @fix/git-safe-directory to @d157a51 (commit SHA)\n- Branch references get cached by GitHub Actions Docker layer\n- SHA references force fresh pull of the updated entrypoint.sh\n- Ensures the fixed DIFF_BASE logic is used\" && git push": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "cd /Users/pedro/Developer/swiftui-showcase && sed -i '' 's/_codeBlocks = Lazy(wrappedValue: codeBlocksArray)/_items = Lazy(wrappedValue: itemsArray)\\\n        _codeBlocks = Lazy(wrappedValue: codeBlocksArray)/g' Sources/Showcase/Models/Topic/Topic.swift": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift build 2>&1 | grep -E \"(error|Build complete)\" | head -20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift build 2>&1 | grep -E \"(error|warning:|Build complete)\" | head -20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "git cherry-pick": true,
+        "\\[Link\\]/()": true,
+        "[ExternalLink]/g'": true,
+        "git add Docs/API_REFACTORING_PLAN.md && git commit -m \"docs: mark Phase 1.5 (ExternalLink rename) as complete\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "sed -i '' 's/\\[Preview\\]/[TopicPreview]/g' Sources/Showcase/Models/Preview/TopicPreview.swift Sources/Showcase/Models/Preview/TopicPreview+Builder.swift && sed -i '' 's/Preview(/TopicPreview(/g' Sources/Showcase/Models/Preview/TopicPreview.swift Sources/Showcase/Models/Preview/TopicPreview+Builder.swift && sed -i '' 's/(lhs: Preview/(lhs: TopicPreview/g' Sources/Showcase/Models/Preview/TopicPreview.swift && sed -i '' 's/rhs: Preview)/rhs: TopicPreview)/g' Sources/Showcase/Models/Preview/TopicPreview.swift": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "Preview/-": true,
+        "TopicPreview/g'": true,
+        "sed -i '' 's/case preview(Preview)/case preview(TopicPreview)/g' Sources/Showcase/Models/Topic/TopicContentItem.swift && sed -i '' 's/extension Preview:/extension TopicPreview:/g' Sources/Showcase/Models/Topic/TopicContentBuilder.swift && sed -i '' 's/public func Preview(/public func TopicPreview(/g' Sources/Showcase/Models/Topic/TopicContentBuilder.swift && sed -i '' 's/init(data: Preview)/init(data: TopicPreview)/g' Sources/Showcase/Views/Preview/ShowcasePreview.swift && sed -i '' 's/Preview\\.ID/TopicPreview.ID/g' Sources/Showcase/Views/Preview/ShowcasePreview.swift": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/TopicPreview": true,
+        "git restore": true,
+        "sed -i '' 's/previews()/examples()/g' Sources/Showcase/Models/Topic/Topic.swift": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "sed -i '' 's/Preview(preview: examples())/Example(example: previews())/g' Sources/Showcase/Models/Topic/Topic.swift": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "\"": true,
+        "Status": true,
+        "Date": true,
+        "Branch": true,
+        "In": true,
+        "PLAN": true,
+        "TODO": true,
+        "Proposal\"": true,
+        "swift test --filter testShowcasableBasic 2>&1 | grep -E \"(passed|failed)\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swift test --filter ShowcaseMacrosTests 2>&1 | grep -E \"(Test Case|passed|failed|Executed)\" | tail -20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "od": true,
+        "swift test 2>&1 | grep -E \"(Test Suite 'ShowcaseMacrosTests'|Executed.*tests)\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "sudo rm -rf ~/Library/Developer/Xcode/DerivedData/ShowcaseExample-bevovykizttjiablnyvqpylxsucr": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "sudo rm -rf ~/Library/Developer/Xcode/DerivedData/ShowcaseExample-* && swift build 2>&1 | tail -20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "swiftlint lint --strict 2>&1 | grep -E \"(error|warning):\" | head -20": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "xcodebuild -list -json | python3 -m json.tool | grep -A 50 '\"swiftui-showcase-Package\"'": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "Suite": true,
+        "export": true,
+        "tee": true,
+        "/tmp/test_inline.swift": true,
+        "/tmp/test_inline2.swift": true,
+        "let": true,
+        "screencapture": true,
+        "log": true,
+        "swiftformat": true,
+        "error": true,
+        "swift test 2>&1 | grep -E \"(Test Suite|tests passed|error|failed)\"": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        ".github/scripts/fix-header-dates.sh": true,
+        "env": true,
+        "docker compose": true,
+        "docker logs": true,
+        "docker exec": true,
+        "hostname": true,
+        "docker run": true,
+        "docker network": true,
+        "whoami": true,
+        "base64": true,
+        "/^bash scripts/setup-github-secrets\\.sh$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "docker stop": true,
+        "docker rm": true,
+        "npx": true,
+        "docker ps": true,
+        "cp": true,
+        "ssh": true,
+        "defaults": true,
+        "time": true,
+        "/tmp/fix.sh": true,
+        "docker images": true,
+        "read": true,
+        "ss": true,
+        "netstat": true,
+        "docker inspect": true,
+        "docker restart": true,
+        "crontab": true,
+        "uniq": true,
+        "Scripts/generate-strings.sh": true,
+        "gtimeout": true,
+        "git remote": true,
+        "git rebase": true,
+        "git reset": true,
+        "docker stats": true,
+        "git submodule": true,
+        "pushd": true,
+        "popd": true,
+        "npm run build": true,
+        "npm install": true,
+        "npm run dev": true,
+        "pkill": true,
+        "fuser": true,
+        "git lfs": true,
+        "/^sudo apt-get update && sudo apt-get install -y git-lfs$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "git init": true,
+        "/^git -C /docker rev-parse --show-toplevel 2>/dev/null \\|\\| echo \"Not a git repo\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^git -C /docker checkout main$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^git -C /docker checkout -- \\. && git -C /docker checkout main$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^git -C /docker reset --hard HEAD && git -C /docker checkout main$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^git -C /docker push origin --delete feature/pedroam-astro-rebuild 2>/dev/null; git -C /docker branch -D feature/pedroam-astro-rebuild 2>/dev/null; git -C /docker fetch origin main && git -C /docker reset --hard origin/main$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^git -C /docker status$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^git -C /docker branch -D feature/pedroam-astro-rebuild$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^git -C /docker ls-files \\| grep pedroam \\| head -20$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^git -C /docker rm -rf pedroam$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^git -C /docker submodule add git@github\\.com:ipedro/pedroam\\.git pedroam$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^git -C /docker check-ignore -v pedroam$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^git -C /docker commit -m \"refactor\\(pedroam\\): move website to separate repo with Git LFS\n\n- Remove embedded pedroam files from homelab\n- Add ipedro/pedroam as submodule\n- Website now tracked in dedicated repo with LFS for video files\n- Prepares for future Cloudflare Pages deployment\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^git -C /docker push origin main$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^git -C /docker/pedroam log --oneline -3$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^git -C /docker/pedroam checkout main && git -C /docker/pedroam pull origin main$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^git -C /docker add pedroam && git -C /docker commit -m \"chore\\(pedroam\\): update submodule to main branch with Astro rebuild\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "systemctl": true,
+        "/^git -C /docker log --oneline -3$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "openssl": true
+    },
+    "chat.agent.maxRequests": 75,
+    "terminal.integrated.suggest.enabled": true,
+    "chat.mcp.serverSampling": {
+        "Remember MCP Server: Remember MCP (Mode Manager)": {
+            "allowedDuringChat": true
+        }
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "numso.prettier-standard-vscode"
+    },
+    "chat.mcp.gallery.enabled": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "files.autoSave": "afterDelay",
+    "remote.SSH.connectTimeout": 60
+}

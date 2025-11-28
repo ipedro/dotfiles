@@ -1,0 +1,110 @@
+---
+- name: Configure macOS
+  hosts: all
+  vars_files:
+    - config.yml
+
+  tasks:
+    - name: Install Homebrew packages
+      community.general.homebrew:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ homebrew_packages }}"
+      tags: [homebrew]
+
+    - name: Install Homebrew casks
+      community.general.homebrew_cask:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ homebrew_casks }}"
+      tags: [homebrew, casks]
+
+    - name: Tap Homebrew repositories
+      community.general.homebrew_tap:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ homebrew_taps }}"
+      tags: [homebrew, taps]
+
+    - name: Ensure dotfiles directory exists
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/Developer/dotfiles"
+        state: directory
+        mode: "0755"
+      tags: [dotfiles]
+
+    - name: Symlink shell configuration files
+      ansible.builtin.file:
+        src: "{{ playbook_dir }}/files/{{ item }}"
+        dest: "{{ ansible_env.HOME }}/{{ item }}"
+        state: link
+        force: true
+      loop:
+        - .zshrc
+        - .zprofile
+      tags: [dotfiles, shell]
+
+    - name: Symlink git configuration files
+      ansible.builtin.file:
+        src: "{{ playbook_dir }}/files/{{ item }}"
+        dest: "{{ ansible_env.HOME }}/{{ item }}"
+        state: link
+        force: true
+      loop:
+        - .gitconfig
+        - .gitignore_global
+      tags: [dotfiles, git]
+
+    - name: Ensure .ssh directory exists
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.ssh"
+        state: directory
+        mode: "0700"
+      tags: [ssh]
+
+    - name: Check if .zshrc.local exists
+      ansible.builtin.stat:
+        path: "{{ ansible_env.HOME }}/.zshrc.local"
+      register: zshrc_local
+      tags: [dotfiles, secrets]
+
+    - name: Create .zshrc.local from example if not exists
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/files/.zshrc.local.example"
+        dest: "{{ ansible_env.HOME }}/.zshrc.local"
+        mode: "0600"
+      when: not zshrc_local.stat.exists
+      tags: [dotfiles, secrets]
+
+    - name: Ensure VS Code config directory exists
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/Library/Application Support/Code/User"
+        state: directory
+        mode: "0755"
+      tags: [vscode]
+
+    - name: Symlink VS Code settings.json
+      ansible.builtin.file:
+        src: "{{ playbook_dir }}/files/vscode/settings.json"
+        dest: "{{ ansible_env.HOME }}/Library/Application Support/Code/User/settings.json"
+        state: link
+        force: true
+      tags: [vscode]
+
+    - name: Install VS Code extensions
+      ansible.builtin.shell: code --install-extension {{ item }}
+      loop: "{{ vscode_extensions }}"
+      register: vscode_ext_result
+      changed_when: "'already installed' not in vscode_ext_result.stdout"
+      failed_when: false
+      tags: [vscode]
+
+    - name: Configure macOS defaults
+      community.general.osx_defaults:
+        domain: "{{ item.domain }}"
+        key: "{{ item.key }}"
+        type: "{{ item.type }}"
+        value: "{{ item.value }}"
+      loop: "{{ macos_defaults }}"
+      when: configure_macos_defaults | default(false)
+      tags: [macos]
