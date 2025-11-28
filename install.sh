@@ -59,21 +59,40 @@ echo "📚 Installing Ansible collections..."
 ansible-galaxy install -r requirements.yml
 
 # -----------------------------------------------------------------------------
-# 6. Run the playbook
+# 6. Sign in to Mac App Store (required for mas)
+# -----------------------------------------------------------------------------
+echo "🍎 Checking Mac App Store sign-in..."
+if ! mas account &>/dev/null; then
+    echo "⚠️  Please sign in to Mac App Store (System Settings > Apple ID) and re-run."
+    echo "   Or continue without MAS apps by running: ansible-playbook main.yml --skip-tags mas"
+fi
+
+# -----------------------------------------------------------------------------
+# 7. Configure Vaultwarden (optional)
+# -----------------------------------------------------------------------------
+if [[ -n "$BW_URL" ]]; then
+    echo "🔐 Configuring Bitwarden CLI for Vaultwarden..."
+    brew install bitwarden-cli
+    bw config server "$BW_URL"
+    echo "   Run 'bw login' to authenticate, then re-run the playbook with --tags secrets"
+fi
+
+# -----------------------------------------------------------------------------
+# 8. Run the playbook
 # -----------------------------------------------------------------------------
 echo "🎯 Running Ansible playbook..."
 ansible-playbook main.yml --ask-become-pass
 
 # -----------------------------------------------------------------------------
-# 7. Post-install reminders
+# 9. Post-install reminders
 # -----------------------------------------------------------------------------
 echo ""
 echo "✅ Setup complete!"
 echo ""
 echo "📝 Manual steps remaining:"
-echo "   1. Edit ~/.zshrc.local with your secrets (API keys, etc.)"
+echo "   1. Configure Vaultwarden: export BW_URL='https://vault.yourdomain.com'"
+echo "      Then: bw login && bw unlock && ansible-playbook main.yml --tags secrets"
 echo "   2. Import SSH keys from secure backup or generate new ones"
-echo "   3. Sign in to Mac App Store and install apps manually"
-echo "   4. Import Sparkle signing key from Vaultwarden/backup"
-echo "   5. Restart your terminal to apply shell changes"
+echo "   3. Import Sparkle signing key from Vaultwarden"
+echo "   4. Restart your terminal to apply shell changes"
 echo ""

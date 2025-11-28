@@ -20,12 +20,57 @@ homebrew_packages:
   - swiftlint
   - xclogparser
 
-# Homebrew casks (GUI apps)
+# Homebrew casks (GUI apps - only those NOT available on MAS)
 homebrew_casks:
   - android-platform-tools
+  - ankerwork
+  - betterdisplay
+  - blender
+  - chatgpt
+  - creality-print
   - font-fira-code
+  - fork
+  - freecad
+  - google-chrome
   - ollama-app
+  - openscad
+  - raspberry-pi-imager
+  - rustdesk
+  - sf-symbols
+  - sketch
+  - visual-studio-code
   - xcodes-app
+
+# Mac App Store apps (preferred over casks when available)
+# Requires: brew install mas && mas signin
+mas_apps:
+  - { id: 1365531024, name: "1Blocker" }
+  - { id: 948660805, name: "AusweisApp" }
+  - { id: 1352778147, name: "Bitwarden" }
+  - { id: 425264550, name: "Blackmagic Disk Speed Test" }
+  - { id: 1397180934, name: "Dark Mode for Safari" }
+  - { id: 1388020431, name: "DevCleaner" }
+  - { id: 1358823008, name: "Flighty" }
+  - { id: 6753110395, name: "Folder Quick Look" }
+  - { id: 1099568401, name: "Home Assistant" }
+  - { id: 1136220934, name: "Infuse" }
+  - { id: 409183694, name: "Keynote" }
+  - { id: 1066144116, name: "Live Home 3D" }
+  - { id: 905953485, name: "NordVPN" }
+  - { id: 409203825, name: "Numbers" }
+  - { id: 409201541, name: "Pages" }
+  - { id: 1289583905, name: "Pixelmator Pro" }
+  - { id: 1504940162, name: "RocketSim" }
+  - { id: 1091675654, name: "Shapr3D" }
+  - { id: 747648890, name: "Telegram" }
+  - { id: 899247664, name: "TestFlight" }
+  - { id: 310633997, name: "WhatsApp" }
+  - { id: 497799835, name: "Xcode" }
+  - { id: 1153337296, name: "xcsort" }
+
+# Apps to remove (bundled bloatware)
+mas_apps_to_remove:
+  - { id: 682658836, name: "GarageBand" }
 
 # VS Code extensions
 vscode_extensions:
@@ -81,3 +126,12 @@ macos_defaults:
     key: InitialKeyRepeat
     type: int
     value: 15
+
+# Vaultwarden/Bitwarden secrets
+# These will be fetched via `bw` CLI and written to ~/.zshrc.local
+# Configure your Vaultwarden server: export BW_URL="https://vault.yourdomain.com"
+vaultwarden_secrets:
+  - { bw_name: "OpenAI API Key", env_var: "OPENAI_API_KEY" }
+  # Add more secrets as needed:
+  # - { bw_name: "GitHub Token", env_var: "GITHUB_TOKEN" }
+  # - { bw_name: "NPM Token", env_var: "NPM_TOKEN" }

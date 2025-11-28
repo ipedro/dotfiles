@@ -1,0 +1,8 @@
+# Auto-generated secrets from Vaultwarden
+# Do NOT commit this file
+
+{% for secret in vaultwarden_secrets %}
+{% if fetched_secrets.results[loop.index0].stdout is defined %}
+export {{ secret.env_var }}="{{ fetched_secrets.results[loop.index0].stdout }}"
+{% endif %}
+{% endfor %}

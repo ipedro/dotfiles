@@ -99,6 +99,26 @@
       failed_when: false
       tags: [vscode]
 
+    - name: Install mas (Mac App Store CLI)
+      community.general.homebrew:
+        name: mas
+        state: present
+      tags: [mas]
+
+    - name: Install Mac App Store apps
+      ansible.builtin.shell: mas install {{ item.id }}
+      loop: "{{ mas_apps }}"
+      register: mas_result
+      changed_when: "'already installed' not in mas_result.stderr"
+      failed_when: false
+      tags: [mas]
+
+    - name: Remove unwanted bundled apps
+      ansible.builtin.shell: mas uninstall {{ item.id }} || true
+      loop: "{{ mas_apps_to_remove | default([]) }}"
+      failed_when: false
+      tags: [mas, cleanup]
+
     - name: Configure macOS defaults
       community.general.osx_defaults:
         domain: "{{ item.domain }}"
@@ -108,3 +128,42 @@
       loop: "{{ macos_defaults }}"
       when: configure_macos_defaults | default(false)
       tags: [macos]
+
+    # Vaultwarden/Bitwarden secrets integration
+    - name: Check if Bitwarden CLI is installed
+      ansible.builtin.shell: command -v bw
+      register: bw_installed
+      failed_when: false
+      changed_when: false
+      tags: [secrets]
+
+    - name: Install Bitwarden CLI
+      community.general.homebrew:
+        name: bitwarden-cli
+        state: present
+      when: bw_installed.rc != 0
+      tags: [secrets]
+
+    - name: Check Bitwarden login status
+      ansible.builtin.shell: bw status | grep -q '"status":"unlocked"'
+      register: bw_unlocked
+      failed_when: false
+      changed_when: false
+      tags: [secrets]
+
+    - name: Fetch secrets from Vaultwarden
+      ansible.builtin.shell: |
+        bw get password "{{ item.bw_name }}"
+      loop: "{{ vaultwarden_secrets | default([]) }}"
+      register: fetched_secrets
+      when: bw_unlocked.rc == 0
+      no_log: true
+      tags: [secrets]
+
+    - name: Write secrets to .zshrc.local
+      ansible.builtin.template:
+        src: templates/zshrc.local.j2
+        dest: "{{ ansible_env.HOME }}/.zshrc.local"
+        mode: "0600"
+      when: bw_unlocked.rc == 0 and fetched_secrets is defined
+      tags: [secrets]
