@@ -9,7 +9,7 @@ Automated setup for a new Mac using Ansible. Installs packages, configures dotfi
 On a fresh Mac, open Terminal and run:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/ipedro/dotfiles/main/bootstrap.sh | bash
+bash <(curl -fsSL https://raw.githubusercontent.com/ipedro/dotfiles/main/bootstrap.sh)
 ```
 
 That's it! The script will:

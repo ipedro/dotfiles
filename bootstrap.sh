@@ -3,7 +3,7 @@
 # 🚀 Pedro's Mac Bootstrap
 # One command to rule them all
 #
-# Usage: curl -fsSL https://raw.githubusercontent.com/ipedro/dotfiles/main/bootstrap.sh | bash
+# Usage: bash <(curl -fsSL https://raw.githubusercontent.com/ipedro/dotfiles/main/bootstrap.sh)
 #
 
 set -e
@@ -50,4 +50,4 @@ echo ""
 echo "🎯 Starting interactive setup..."
 echo ""
 cd "$DOTFILES_DIR"
-exec ./setup.sh
+exec ./setup.sh </dev/tty
