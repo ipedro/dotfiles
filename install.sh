@@ -68,14 +68,12 @@ if ! mas account &>/dev/null; then
 fi
 
 # -----------------------------------------------------------------------------
-# 7. Configure Vaultwarden (optional)
+# 7. Configure Vaultwarden
 # -----------------------------------------------------------------------------
-if [[ -n "$BW_URL" ]]; then
-    echo "🔐 Configuring Bitwarden CLI for Vaultwarden..."
-    brew install bitwarden-cli
-    bw config server "$BW_URL"
-    echo "   Run 'bw login' to authenticate, then re-run the playbook with --tags secrets"
-fi
+echo "🔐 Configuring Bitwarden CLI for Vaultwarden..."
+brew install bitwarden-cli
+bw config server "https://vault.pedro.am"
+echo "   Run 'bw login' to authenticate, then re-run the playbook with --tags secrets"
 
 # -----------------------------------------------------------------------------
 # 8. Run the playbook
@@ -90,9 +88,10 @@ echo ""
 echo "✅ Setup complete!"
 echo ""
 echo "📝 Manual steps remaining:"
-echo "   1. Configure Vaultwarden: export BW_URL='https://vault.yourdomain.com'"
-echo "      Then: bw login && bw unlock && ansible-playbook main.yml --tags secrets"
-echo "   2. Import SSH keys from secure backup or generate new ones"
+echo "   1. Login to Vaultwarden: bw login"
+echo "      Then: export BW_SESSION=\$(bw unlock --raw)"
+echo "      Then: ansible-playbook main.yml --tags secrets"
+echo "   2. Import SSH keys from Vaultwarden secure notes"
 echo "   3. Import Sparkle signing key from Vaultwarden"
 echo "   4. Restart your terminal to apply shell changes"
 echo ""

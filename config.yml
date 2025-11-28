@@ -6,11 +6,13 @@ homebrew_taps:
 # Homebrew packages (formulae)
 homebrew_packages:
   - cloc
+  - gh
   - go
   - hugo
   - iperf3
   - mint
   - node
+  - openai-whisper
   - pipx
   - python@3.14
   - rbenv
@@ -129,7 +131,7 @@ macos_defaults:
 
 # Vaultwarden/Bitwarden secrets
 # These will be fetched via `bw` CLI and written to ~/.zshrc.local
-# Configure your Vaultwarden server: export BW_URL="https://vault.yourdomain.com"
+# Server: https://vault.pedro.am
 vaultwarden_secrets:
   - { bw_name: "OpenAI API Key", env_var: "OPENAI_API_KEY" }
   # Add more secrets as needed:
