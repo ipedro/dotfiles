@@ -1,0 +1,26 @@
+---
+# Workspace setup: Developer folder and git repos
+
+# =============================================================================
+# Create Developer directory
+# =============================================================================
+- name: Create ~/Developer directory
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/Developer"
+    state: directory
+    mode: "0755"
+
+# =============================================================================
+# Clone personal repositories
+# =============================================================================
+- name: Clone personal repositories
+  ansible.builtin.git:
+    repo: "{{ item.repo }}"
+    dest: "{{ ansible_env.HOME }}/Developer/{{ item.name }}"
+    clone: true
+    update: false  # Don't overwrite local changes
+    accept_hostkey: true
+  loop: "{{ developer_repos | default([]) }}"
+  when: developer_repos is defined and developer_repos | length > 0
+  register: cloned_repos
+  failed_when: false  # Don't fail if repo already exists with changes

@@ -5,6 +5,9 @@
     - config.yml
 
   roles:
+    - role: workspace
+      tags: [workspace, repos]
+
     - role: homebrew
       tags: [homebrew, packages, casks, mas]
 

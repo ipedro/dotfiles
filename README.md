@@ -80,6 +80,7 @@ dotfiles/
 │   └── vscode/settings.json
 ├── Brewfile                 # Homebrew bundle (reference)
 └── roles/                   # Ansible roles
+    ├── workspace/           # ~/Developer folder & repo cloning
     ├── homebrew/            # Packages, casks, MAS apps
     ├── dotfiles/            # Shell & git configs (with backup)
     ├── vscode/              # VS Code settings & extensions
@@ -155,6 +156,7 @@ Edit `config.yml` to customize:
 - `dock_apps` — Dock apps (in order)
 - `enable_touchid_sudo` — Touch ID for terminal sudo
 - `enable_maintenance_schedule` — Weekly auto-updates
+- `developer_repos` — Git repos to clone into ~/Developer
 - `ruby_version` — Ruby version for rbenv
 - `mint_packages` — Swift CLI tools
 - `xcode_version` — Xcode version for xcodes

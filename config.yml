@@ -280,3 +280,26 @@ mint_packages:
 # Requires XCODES_USERNAME and XCODES_PASSWORD in ~/.zshrc.local for automation
 # Or install manually: xcodes install <version> --select
 xcode_version: "16.2"
+
+# =============================================================================
+# Developer Workspace
+# =============================================================================
+# Repositories to clone into ~/Developer
+# Uses SSH URLs (requires SSH key setup first)
+# Set update: false to avoid overwriting local changes
+developer_repos:
+  # Main app
+  - { name: "swift-package-shop", repo: "git@github.com:ipedro/swift-package-shop.git" }
+  # Libraries
+  - { name: "swiftui-property-inspector", repo: "git@github.com:ipedro/swiftui-property-inspector.git" }
+  - { name: "swiftui-showcase", repo: "git@github.com:ipedro/swiftui-showcase.git" }
+  - { name: "swiftui-backport", repo: "git@github.com:ipedro/swiftui-backport.git" }
+  - { name: "swiftui-property-picker", repo: "git@github.com:ipedro/swiftui-property-picker.git" }
+  - { name: "swiftui-sessions", repo: "git@github.com:ipedro/swiftui-sessions.git" }
+  - { name: "swiftui-styled-view", repo: "git@github.com:ipedro/swiftui-styled-view.git" }
+  - { name: "swift-choosable", repo: "git@github.com:ipedro/swift-choosable.git" }
+  - { name: "Inspector", repo: "git@github.com:ipedro/Inspector.git" }
+  # Website
+  - { name: "swift-pallet-com", repo: "git@github.com:ipedro/swift-pallet-com.git" }
+  # Utilities
+  - { name: "UIKeyCommandTableView", repo: "git@github.com:ipedro/UIKeyCommandTableView.git" }
