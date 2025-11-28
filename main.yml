@@ -24,5 +24,8 @@
     - role: devtools
       tags: [devtools, ruby, mint, xcode]
 
+    - role: apps
+      tags: [apps, betterdisplay]
+
     - role: secrets
       tags: [secrets, sparkle, ssh]

@@ -1,0 +1,19 @@
+---
+# App-specific configuration restoration
+
+# =============================================================================
+# BetterDisplay
+# =============================================================================
+- name: Check if BetterDisplay config exists
+  ansible.builtin.stat:
+    path: "{{ playbook_dir }}/files/app-configs/BetterDisplay.plist"
+  register: betterdisplay_config
+
+- name: Restore BetterDisplay settings
+  ansible.builtin.shell: |
+    # Stop BetterDisplay if running
+    killall BetterDisplay 2>/dev/null || true
+    # Import settings
+    defaults import pro.betterdisplay.BetterDisplay "{{ playbook_dir }}/files/app-configs/BetterDisplay.plist"
+  when: betterdisplay_config.stat.exists
+  changed_when: true
